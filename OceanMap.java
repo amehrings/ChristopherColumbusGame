@@ -8,6 +8,7 @@ import java.awt.Point;
 import java.util.Random;
 
 public class OceanMap {
+	private static OceanMap uniqueInstance;
 	boolean[][]islands;
 	int dimensions;
 	int islandCount;
@@ -17,7 +18,7 @@ public class OceanMap {
 	Point pirateTwoLocation;
 	
 	//Ocean Map constructor which creates the grid, places the islands and ChristopherColumbus
-	public OceanMap(int dimensions, int islandCount) {
+	private OceanMap(int dimensions, int islandCount) {
 		this.dimensions = dimensions;
 		this.islandCount = islandCount;
 		createGrid();
@@ -27,6 +28,15 @@ public class OceanMap {
 		pirateTwoLocation = placePirateChristopherColumbus();
 	}
 	
+	public static OceanMap getInstance() {
+		if (uniqueInstance == null) {
+			Random randIsland = new Random();
+			int randIslands = randIsland.nextInt(20);
+			uniqueInstance = new OceanMap(20, randIslands);
+		}
+		return uniqueInstance;
+	}
+	
 	// Return generated map
 	public boolean [][] getMap() {
 		return islands; 
@@ -34,7 +44,7 @@ public class OceanMap {
 	
 	//creates the island array, with every tile being an ocean tile initially
 	private void createGrid() {
-		islands = new boolean[20][20];
+		islands = new boolean[dimensions][dimensions];
 		for (int x = 0; x < dimensions; x++) {
 			for (int y = 0; y < dimensions; y++) {
 				islands[x][y] = false;
@@ -95,9 +105,6 @@ public class OceanMap {
 		}
 		return pirateOneLocation;
 	}
-	
-	
-	//returns Pirate 2's location as a Point
 	
 	
 	//return the dimensions of the ocean board

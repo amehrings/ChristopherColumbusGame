@@ -23,7 +23,7 @@ import javafx.scene.shape.Rectangle;
 public class OceanExplorer extends Application{
 	Random randIsland = new Random();
 	int randIslands = randIsland.nextInt(20);
-	final int dimensions = 10; 
+	final int dimensions = 20; 
 	final int scale = 50;
 	final int islandCount = randIslands;
 	
@@ -38,12 +38,12 @@ public class OceanExplorer extends Application{
 	ImageView islandImageView;
 	
 	ChristopherColumbus ChristopherColumbus;
-	PirateChristopherColumbus pirate1;
-	PirateChristopherColumbus pirate2;
+	PirateShip pirate1;
+	PirateShip pirate2;
 	
 	@Override
 	public void start(Stage oceanStage) throws Exception {
-		oceanMap = new OceanMap(dimensions, islandCount);
+		oceanMap = OceanMap.getInstance();
 		islandMap = oceanMap.getMap();
 		
 		root = new AnchorPane();
@@ -53,14 +53,14 @@ public class OceanExplorer extends Application{
 		ChristopherColumbus = new ChristopherColumbus(oceanMap);
 		loadChristopherColumbusImage();
 		
-		pirate1 = new PirateChristopherColumbus(oceanMap, 1);
-		pirate2 = new PirateChristopherColumbus(oceanMap, 2);
+		pirate1 = new PirateShip(oceanMap, 1);
+		pirate2 = new PirateShip(oceanMap, 2);
 		loadPirateImages();
 		
 		ChristopherColumbus.addObserver(pirate1);
 		ChristopherColumbus.addObserver(pirate2);
 		
-		scene = new Scene(root, 500, 500);
+		scene = new Scene(root, dimensions*scale, dimensions*scale);
 		oceanStage.setScene(scene);
 		oceanStage.setTitle("Ocean");
 		oceanStage.show();
@@ -81,7 +81,7 @@ public class OceanExplorer extends Application{
 	}
 	
 	private void loadChristopherColumbusImage() {
-		Image ChristopherColumbusImage = new Image("images\\ChristopherColumbus.png", 50, 50 , true, true);
+		Image ChristopherColumbusImage = new Image("images\\ship.png", 50, 50 , true, true);
 		ChristopherColumbusImageView = new ImageView(ChristopherColumbusImage);
 		ChristopherColumbusImageView.setX(oceanMap.getChristopherColumbusLocation().x*scale);
 		ChristopherColumbusImageView.setY(oceanMap.getChristopherColumbusLocation().y*scale);
@@ -103,7 +103,7 @@ public class OceanExplorer extends Application{
 	}
 	
 	private void loadPirateImages() {
-		Image pirateChristopherColumbusImage = new Image("images\\pirateChristopherColumbus.png", 50, 50, true, true);
+		Image pirateChristopherColumbusImage = new Image("images\\pirateShip.png", 50, 50, true, true);
 		pirateOneImageView = new ImageView(pirateChristopherColumbusImage);
 		pirateOneImageView.setX(oceanMap.getPirateLocation(1).x*scale);
 		pirateOneImageView.setY(oceanMap.getPirateLocation(1).y*scale);
@@ -124,23 +124,15 @@ public class OceanExplorer extends Application{
 				switch(ke.getCode()) {
 					case RIGHT:
 						ChristopherColumbus.goEast();
-						//pirate1.movePirateChristopherColumbus();
-						//pirate2.movePirateChristopherColumbus();
 						break;
 					case LEFT:
 						ChristopherColumbus.goWest();
-						//pirate1.movePirateChristopherColumbus();
-						//pirate2.movePirateChristopherColumbus();
 						break;
 					case UP:
 						ChristopherColumbus.goNorth();
-						//pirate1.movePirateChristopherColumbus();
-						//.movePirateChristopherColumbus();
 						break;
 					case DOWN:
 						ChristopherColumbus.goSouth();
-						//pirate1.movePirateChristopherColumbus();
-						//pirate2.movePirateChristopherColumbus();
 						break;
 				default:
 					break;
