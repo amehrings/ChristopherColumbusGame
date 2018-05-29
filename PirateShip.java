@@ -11,6 +11,7 @@ public class PirateShip implements Observer {
 	OceanMap oceanMap;
 	boolean[][] islandMap;
 	Point ChristopherColumbusLocation;
+	Strategy strat;
 	int number;
 	
 	//Pirate Ship constructor 
@@ -31,13 +32,15 @@ public class PirateShip implements Observer {
 		
 		if (cc instanceof ChristopherColumbus) {
 			ChristopherColumbusLocation = ((ChristopherColumbus) cc).getChristopherColumbusLocation();
-			movePirateShip();
+			move();
 		}
 		
 	}
 
 	//moves Pirate Ship closer to Christopher Columbus
-	public void movePirateShip() {
+	public void move() {
+		strat.movePirateShip();
+		/*
 		if (currentLocation.x - ChristopherColumbusLocation.x < 0) {
 			if (currentLocation.x + 1 < oceanMap.getDimensions() 
 					&& oceanMap.isOcean(currentLocation.x+1, currentLocation.y) ) {
@@ -62,7 +65,18 @@ public class PirateShip implements Observer {
 					&& oceanMap.isOcean(currentLocation.x, currentLocation.y-1)) {
 				currentLocation.y--;
 			}
-		}
+		}  */
 	}
+
+	public String getStrategy() {
+		return strat.getStrategy();
+		
+	}
+	
+	public void setStrategy(Strategy strat) {
+		this.strat = strat;
+	}
+
+
 
 }

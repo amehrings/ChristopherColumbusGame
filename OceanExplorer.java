@@ -54,7 +54,9 @@ public class OceanExplorer extends Application{
 		loadChristopherColumbusImage();
 		
 		pirate1 = new PirateShip(oceanMap, 1);
+		//pirate1.setStrategy(new BasicMoveStrategy());
 		pirate2 = new PirateShip(oceanMap, 2);
+		//pirate2.setStrategy(new ObserverStrategy());
 		loadPirateImages();
 		
 		ChristopherColumbus.addObserver(pirate1);
@@ -67,19 +69,20 @@ public class OceanExplorer extends Application{
 		startSailing();
 	}
 	
+	//draws the Map of the game, no return value
 	public void drawMap() {
 		islandMap = oceanMap.getMap();
 		for(int x = 0; x < dimensions; x++){
 		   for(int y = 0; y < dimensions; y++){
 		       Rectangle rect = new Rectangle(x*scale,y*scale,scale,scale); 
-		       rect.setStroke(Color.BLACK);   // We want the black outline
-		       rect.setFill(Color.PALETURQUOISE);  // I like this color better than BLUE
+		       rect.setStroke(Color.BLACK);   
+		       rect.setFill(Color.PALETURQUOISE);  
 		       root.getChildren().add(rect);
-		       // Add to the node tree in the pane
 		   } 
 		} 
 	}
 	
+	//loads Christopher Columbus's Image to the game, no return value
 	private void loadChristopherColumbusImage() {
 		Image ChristopherColumbusImage = new Image("images\\ship.png", 50, 50 , true, true);
 		ChristopherColumbusImageView = new ImageView(ChristopherColumbusImage);
@@ -88,6 +91,7 @@ public class OceanExplorer extends Application{
 		root.getChildren().add(ChristopherColumbusImageView);
 	}
 	
+	//loads island images to the game, no return value
 	private void loadIslandImages() {
 		for(int x = 0; x < dimensions; x++){
 			   for(int y = 0; y < dimensions; y++){
@@ -102,6 +106,7 @@ public class OceanExplorer extends Application{
 		}
 	}
 	
+	//loads pirate images to the game, no return value
 	private void loadPirateImages() {
 		Image pirateChristopherColumbusImage = new Image("images\\pirateShip.png", 50, 50, true, true);
 		pirateOneImageView = new ImageView(pirateChristopherColumbusImage);
@@ -115,8 +120,7 @@ public class OceanExplorer extends Application{
 		root.getChildren().add(pirateTwoImageView);
 	}
 	
-	
-	
+	//allows the user to move Christopher Columbus, no return value
 	private void startSailing() {
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override

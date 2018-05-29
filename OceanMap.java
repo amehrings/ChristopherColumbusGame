@@ -24,8 +24,8 @@ public class OceanMap {
 		createGrid();
 		placeIslands();
 		ChristopherColumbusLocation = placeChristopherColumbus();
-		pirateOneLocation = placePirateChristopherColumbus();
-		pirateTwoLocation = placePirateChristopherColumbus();
+		pirateOneLocation = placePirateShip();
+		pirateTwoLocation = placePirateShip();
 	}
 	
 	public static OceanMap getInstance() {
@@ -80,7 +80,7 @@ public class OceanMap {
 	}
 	
 	//places the pirate ChristopherColumbuss onto the ocean
-	private Point placePirateChristopherColumbus() {
+	private Point placePirateShip() {
 		boolean placedPirateChristopherColumbus = false;
 		int x = 0, y = 0;
 		while (!placedPirateChristopherColumbus) {

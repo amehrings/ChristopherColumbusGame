@@ -8,7 +8,7 @@ import java.util.List;
 
 import java.awt.Point;
 
-//This class is Christopher Coumbus's Ship!!
+//This class is Christopher Columbus's Ship!!
 
 public class ChristopherColumbus implements Subject {
 	List<Observer> observers = new LinkedList<Observer>();
