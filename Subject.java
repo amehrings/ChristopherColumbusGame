@@ -1,5 +1,5 @@
-/* Austin Paul
- * Assignment 2
+/* Austin Paul and Aaron Mehrings
+ * Final Project
  * SE350
  */
 
