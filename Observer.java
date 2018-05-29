@@ -1,6 +1,6 @@
 /* Austin Paul and Aaron Mehrings
  * Final Project
- * aSE350
+ * SE350
  */
 
 public interface Observer {
