@@ -10,7 +10,7 @@ public class PirateShip implements Observer {
 	Point currentLocation;
 	OceanMap oceanMap;
 	boolean[][] islandMap;
-	Point shipLocation;
+	Point ChristopherColumbusLocation;
 	int number;
 	
 	//Pirate Ship constructor 
@@ -27,10 +27,10 @@ public class PirateShip implements Observer {
 
 	//updates Pirate Ship of CHristopher Columbus's location
 	@Override
-	public void update(Ship ship) {
+	public void update(ChristopherColumbus cc) {
 		
-		if (ship instanceof Ship) {
-			shipLocation = ((Ship) ship).getShipLocation();
+		if (cc instanceof ChristopherColumbus) {
+			ChristopherColumbusLocation = ((ChristopherColumbus) cc).getChristopherColumbusLocation();
 			movePirateShip();
 		}
 		
@@ -38,7 +38,7 @@ public class PirateShip implements Observer {
 
 	//moves Pirate Ship closer to Christopher Columbus
 	public void movePirateShip() {
-		if (currentLocation.x - shipLocation.x < 0) {
+		if (currentLocation.x - ChristopherColumbusLocation.x < 0) {
 			if (currentLocation.x + 1 < oceanMap.getDimensions() 
 					&& oceanMap.isOcean(currentLocation.x+1, currentLocation.y) ) {
 				currentLocation.x++;
@@ -51,7 +51,7 @@ public class PirateShip implements Observer {
 			}
 		}
 		
-		if (currentLocation.y - shipLocation.y < 0) {
+		if (currentLocation.y - ChristopherColumbusLocation.y < 0) {
 			if (currentLocation.y + 1 < oceanMap.getDimensions()
 					&& oceanMap.isOcean(currentLocation.x, currentLocation.y+1)) {
 				currentLocation.y++;

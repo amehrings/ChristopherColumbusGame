@@ -4,5 +4,5 @@
  */
 
 public interface Observer {
-	public void update(Ship ship);
+	public void update(ChristopherColumbus cc);
 }

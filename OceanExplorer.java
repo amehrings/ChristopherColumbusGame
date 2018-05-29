@@ -32,14 +32,14 @@ public class OceanExplorer extends Application{
 	Scene scene;
 	Pane root;
 	
-	ImageView shipImageView;
+	ImageView ChristopherColumbusImageView;
 	ImageView pirateOneImageView;
 	ImageView pirateTwoImageView;
 	ImageView islandImageView;
 	
-	Ship ship;
-	PirateShip pirate1;
-	PirateShip pirate2;
+	ChristopherColumbus ChristopherColumbus;
+	PirateChristopherColumbus pirate1;
+	PirateChristopherColumbus pirate2;
 	
 	@Override
 	public void start(Stage oceanStage) throws Exception {
@@ -50,15 +50,15 @@ public class OceanExplorer extends Application{
 		drawMap();
 		loadIslandImages();
 		
-		ship = new Ship(oceanMap);
-		loadShipImage();
+		ChristopherColumbus = new ChristopherColumbus(oceanMap);
+		loadChristopherColumbusImage();
 		
-		pirate1 = new PirateShip(oceanMap, 1);
-		pirate2 = new PirateShip(oceanMap, 2);
+		pirate1 = new PirateChristopherColumbus(oceanMap, 1);
+		pirate2 = new PirateChristopherColumbus(oceanMap, 2);
 		loadPirateImages();
 		
-		ship.addObserver(pirate1);
-		ship.addObserver(pirate2);
+		ChristopherColumbus.addObserver(pirate1);
+		ChristopherColumbus.addObserver(pirate2);
 		
 		scene = new Scene(root, 500, 500);
 		oceanStage.setScene(scene);
@@ -80,12 +80,12 @@ public class OceanExplorer extends Application{
 		} 
 	}
 	
-	private void loadShipImage() {
-		Image shipImage = new Image("images\\ship.png", 50, 50 , true, true);
-		shipImageView = new ImageView(shipImage);
-		shipImageView.setX(oceanMap.getShipLocation().x*scale);
-		shipImageView.setY(oceanMap.getShipLocation().y*scale);
-		root.getChildren().add(shipImageView);
+	private void loadChristopherColumbusImage() {
+		Image ChristopherColumbusImage = new Image("images\\ChristopherColumbus.png", 50, 50 , true, true);
+		ChristopherColumbusImageView = new ImageView(ChristopherColumbusImage);
+		ChristopherColumbusImageView.setX(oceanMap.getChristopherColumbusLocation().x*scale);
+		ChristopherColumbusImageView.setY(oceanMap.getChristopherColumbusLocation().y*scale);
+		root.getChildren().add(ChristopherColumbusImageView);
 	}
 	
 	private void loadIslandImages() {
@@ -103,13 +103,13 @@ public class OceanExplorer extends Application{
 	}
 	
 	private void loadPirateImages() {
-		Image pirateShipImage = new Image("images\\pirateShip.png", 50, 50, true, true);
-		pirateOneImageView = new ImageView(pirateShipImage);
+		Image pirateChristopherColumbusImage = new Image("images\\pirateChristopherColumbus.png", 50, 50, true, true);
+		pirateOneImageView = new ImageView(pirateChristopherColumbusImage);
 		pirateOneImageView.setX(oceanMap.getPirateLocation(1).x*scale);
 		pirateOneImageView.setY(oceanMap.getPirateLocation(1).y*scale);
 		root.getChildren().add(pirateOneImageView);
 		
-		pirateTwoImageView = new ImageView(pirateShipImage);
+		pirateTwoImageView = new ImageView(pirateChristopherColumbusImage);
 		pirateTwoImageView.setX(oceanMap.getPirateLocation(2).x*scale);
 		pirateTwoImageView.setY(oceanMap.getPirateLocation(2).y*scale);
 		root.getChildren().add(pirateTwoImageView);
@@ -123,30 +123,30 @@ public class OceanExplorer extends Application{
 			public void handle(KeyEvent ke) {
 				switch(ke.getCode()) {
 					case RIGHT:
-						ship.goEast();
-						//pirate1.movePirateShip();
-						//pirate2.movePirateShip();
+						ChristopherColumbus.goEast();
+						//pirate1.movePirateChristopherColumbus();
+						//pirate2.movePirateChristopherColumbus();
 						break;
 					case LEFT:
-						ship.goWest();
-						//pirate1.movePirateShip();
-						//pirate2.movePirateShip();
+						ChristopherColumbus.goWest();
+						//pirate1.movePirateChristopherColumbus();
+						//pirate2.movePirateChristopherColumbus();
 						break;
 					case UP:
-						ship.goNorth();
-						//pirate1.movePirateShip();
-						//.movePirateShip();
+						ChristopherColumbus.goNorth();
+						//pirate1.movePirateChristopherColumbus();
+						//.movePirateChristopherColumbus();
 						break;
 					case DOWN:
-						ship.goSouth();
-						//pirate1.movePirateShip();
-						//pirate2.movePirateShip();
+						ChristopherColumbus.goSouth();
+						//pirate1.movePirateChristopherColumbus();
+						//pirate2.movePirateChristopherColumbus();
 						break;
 				default:
 					break;
 				}
-				shipImageView.setX(oceanMap.getShipLocation().x*scale);
-				shipImageView.setY(oceanMap.getShipLocation().y*scale);
+				ChristopherColumbusImageView.setX(oceanMap.getChristopherColumbusLocation().x*scale);
+				ChristopherColumbusImageView.setY(oceanMap.getChristopherColumbusLocation().y*scale);
 				
 				pirateOneImageView.setX(oceanMap.getPirateLocation(1).x*scale);
 				pirateOneImageView.setY(oceanMap.getPirateLocation(1).y*scale);

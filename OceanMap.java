@@ -12,19 +12,19 @@ public class OceanMap {
 	int dimensions;
 	int islandCount;
 	Random rand = new Random();
-	Point shipLocation;
+	Point ChristopherColumbusLocation;
 	Point pirateOneLocation;
 	Point pirateTwoLocation;
 	
-	//Ocean Map constructor which creates the grid, places the islands and ship
+	//Ocean Map constructor which creates the grid, places the islands and ChristopherColumbus
 	public OceanMap(int dimensions, int islandCount) {
 		this.dimensions = dimensions;
 		this.islandCount = islandCount;
 		createGrid();
 		placeIslands();
-		shipLocation = placeShip();
-		pirateOneLocation = placePirateShip();
-		pirateTwoLocation = placePirateShip();
+		ChristopherColumbusLocation = placeChristopherColumbus();
+		pirateOneLocation = placePirateChristopherColumbus();
+		pirateTwoLocation = placePirateChristopherColumbus();
 	}
 	
 	// Return generated map
@@ -55,37 +55,37 @@ public class OceanMap {
 		}
 	}
 	
-	//places the ship in a non-island location
-	private Point placeShip() {
-		boolean placedShip = false;
+	//places the ChristopherColumbus in a non-island location
+	private Point placeChristopherColumbus() {
+		boolean placedChristopherColumbus = false;
 		int x = 0, y = 0;
-		while (!placedShip) {
+		while (!placedChristopherColumbus) {
 			x = rand.nextInt(dimensions);
 			y = rand.nextInt(dimensions);
 			if (islands[x][y] == false) {
-				placedShip = true;
+				placedChristopherColumbus = true;
 			}
 		}
 		return new Point(x, y);
 	}
 	
-	//places the pirate ships onto the ocean
-	private Point placePirateShip() {
-		boolean placedPirateShip = false;
+	//places the pirate ChristopherColumbuss onto the ocean
+	private Point placePirateChristopherColumbus() {
+		boolean placedPirateChristopherColumbus = false;
 		int x = 0, y = 0;
-		while (!placedPirateShip) {
+		while (!placedPirateChristopherColumbus) {
 			x = rand.nextInt(dimensions);
 			y = rand.nextInt(dimensions);
 			if (islands[x][y] == false) {
-				placedPirateShip = true;
+				placedPirateChristopherColumbus = true;
 			}
 		}
 		return new Point(x, y);
 	}
 	
-	//returns the ship location as a Point
-	public Point getShipLocation() {
-		return shipLocation;
+	//returns the ChristopherColumbus location as a Point
+	public Point getChristopherColumbusLocation() {
+		return ChristopherColumbusLocation;
 	}
 	
 	//returns the pirate locations based on its number a Point
