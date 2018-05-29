@@ -1,5 +1,5 @@
 
-public class ObserverStrategy implements Strategy {
+public class ObserverMoveStrategy implements Strategy {
 
 	@Override
 	public void movePirateShip() {
