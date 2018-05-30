@@ -5,20 +5,29 @@
 
 import java.awt.Point;
 
+public class PirateShip extends PirateFactory implements Observer  {
 
-public class PirateShip implements Observer {
-	Point currentLocation;
-	OceanMap oceanMap;
+    Point currentLocation;
+	OceanMap oceanMap = OceanMap.getInstance();
 	boolean[][] islandMap;
 	Point ChristopherColumbusLocation;
 	Strategy strat;
-	int number;
+	int number = oceanMap.getPirateNumber();
 	
-	//Pirate Ship constructor 
-	public PirateShip(OceanMap oceanMap, int n) {
-		this.oceanMap = oceanMap;
-		this.number = n;
-		currentLocation = oceanMap.getPirateLocation(n);
+	
+	@Override
+	public PirateShip createPirateShip(String type) {
+		if (type.equals("Regular")){
+			oceanMap.addPirateNumber();
+			number = oceanMap.getPirateNumber();
+			return new RegularPirate(oceanMap, number);
+		}
+		else if (type.equals("Dutchman")){
+			oceanMap.addPirateNumber();
+			number = oceanMap.getPirateNumber();
+			return new Dutchman(oceanMap, number);	
+		} else return null;
+		
 	}
 	
 	//returns the ship location as a Point
@@ -39,8 +48,6 @@ public class PirateShip implements Observer {
 
 	//moves Pirate Ship closer to Christopher Columbus
 	public void move() {
-		strat.movePirateShip();
-		/*
 		if (currentLocation.x - ChristopherColumbusLocation.x < 0) {
 			if (currentLocation.x + 1 < oceanMap.getDimensions() 
 					&& oceanMap.isOcean(currentLocation.x+1, currentLocation.y) ) {
@@ -65,7 +72,7 @@ public class PirateShip implements Observer {
 					&& oceanMap.isOcean(currentLocation.x, currentLocation.y-1)) {
 				currentLocation.y--;
 			}
-		}  */
+		}  
 	}
 
 	public String getStrategy() {
@@ -77,6 +84,5 @@ public class PirateShip implements Observer {
 		this.strat = strat;
 	}
 
-
-
+	
 }

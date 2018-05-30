@@ -1,9 +1,13 @@
+/* Austin Paul and Aaron Mehrings
+ * Final Project
+ * SE350
+ */
+
 import java.awt.Point;
 
-public class BasicMoveStrategy implements Strategy {
+public class VerticalMoveStrategy implements Strategy {
 	Point currentLocation;
 	OceanMap oceanMap = OceanMap.getInstance();
-	Point ChristopherColumbusLocation;
 	
 	@Override
 	public void movePirateShip() {

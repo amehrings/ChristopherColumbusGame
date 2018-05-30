@@ -12,6 +12,7 @@ public class OceanMap {
 	boolean[][]islands;
 	int dimensions;
 	int islandCount;
+	int pirateNumber = 0;
 	Random rand = new Random();
 	Point ChristopherColumbusLocation;
 	Point pirateOneLocation;
@@ -115,5 +116,13 @@ public class OceanMap {
 	//returns true if the tile at x, y is an ocean tile, false otherwise
 	public boolean isOcean(int x, int y) {
 		return !islands[x][y];
+	}
+	
+	public void addPirateNumber() {
+		pirateNumber ++;
+	}
+	
+	public int getPirateNumber() {
+		return pirateNumber;
 	}
 }
