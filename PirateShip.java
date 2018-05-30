@@ -5,7 +5,7 @@
 
 import java.awt.Point;
 
-public class PirateShip extends PirateFactory implements Observer  {
+public class PirateShip implements Observer  {
 
     Point currentLocation;
 	OceanMap oceanMap = OceanMap.getInstance();
@@ -13,29 +13,22 @@ public class PirateShip extends PirateFactory implements Observer  {
 	Point ChristopherColumbusLocation;
 	Strategy strat;
 	int number = oceanMap.getPirateNumber();
+	String type;
 	
-	
-	@Override
-	public PirateShip createPirateShip(String type) {
-		if (type.equals("Regular")){
-			oceanMap.addPirateNumber();
-			number = oceanMap.getPirateNumber();
-			return new RegularPirate(oceanMap, number);
-		}
-		else if (type.equals("Dutchman")){
-			oceanMap.addPirateNumber();
-			number = oceanMap.getPirateNumber();
-			return new Dutchman(oceanMap, number);	
-		} else return null;
-		
+	public PirateShip(OceanMap oceanMap, int n, String type) {
+		this.oceanMap = oceanMap;
+		this.number = n;
+		this.type = type;
+		currentLocation = oceanMap.getPirateLocation(n);
 	}
+	
 	
 	//returns the ship location as a Point
 	public Point getPirateShipLocation() {
 		return currentLocation;
 	}
 
-	//updates Pirate Ship of CHristopher Columbus's location
+	//updates Pirate Ship of Christopher Columbus's location
 	@Override
 	public void update(ChristopherColumbus cc) {
 		

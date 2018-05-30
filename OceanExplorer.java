@@ -38,7 +38,7 @@ public class OceanExplorer extends Application{
 	ImageView islandImageView;
 	
 	ChristopherColumbus ChristopherColumbus;
-	PirateFactory pirateFactory;
+	RegularPirateFactory regPirateFactory;
 	PirateShip pirateShipFactory = new PirateShip();
 	PirateShip pirate1;
 	PirateShip pirate2;
@@ -55,7 +55,7 @@ public class OceanExplorer extends Application{
 		ChristopherColumbus = new ChristopherColumbus(oceanMap);
 		loadChristopherColumbusImage();
 		
-		pirate1 = pirateShipFactory.createPirateShip("Regular");
+		pirate1 = RegularPirateFactory.createPirateShip("Vertical");
 		//pirate1.setStrategy(new VerticalMoveStrategy());
 		pirate2 = pirateShipFactory.createPirateShip("Dutchman");
 		//pirate2.setStrategy(new ObserverStrategy());
