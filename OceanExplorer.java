@@ -39,7 +39,7 @@ public class OceanExplorer extends Application{
 	
 	ChristopherColumbus ChristopherColumbus;
 	PirateFactory pirateFactory;
-	PirateShip pirateShipFactory;
+	PirateShip pirateShipFactory = new PirateShip();
 	PirateShip pirate1;
 	PirateShip pirate2;
 	
