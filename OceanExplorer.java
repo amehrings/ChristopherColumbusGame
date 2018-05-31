@@ -38,8 +38,8 @@ public class OceanExplorer extends Application{
 	ImageView islandImageView;
 	
 	ChristopherColumbus ChristopherColumbus;
-	RegularPirateFactory regPirateFactory;
-	PirateShip pirateShipFactory = new PirateShip();
+	RegularPirateFactory regPirateFactory = new RegularPirateFactory();
+	DutchmanFactory dutchFactory = new DutchmanFactory();
 	PirateShip pirate1;
 	PirateShip pirate2;
 	
@@ -55,15 +55,15 @@ public class OceanExplorer extends Application{
 		ChristopherColumbus = new ChristopherColumbus(oceanMap);
 		loadChristopherColumbusImage();
 		
-		pirate1 = RegularPirateFactory.createPirateShip("Vertical");
+		//pirate1 = regPirateFactory.createPirateShip("Vertical");
 		//pirate1.setStrategy(new VerticalMoveStrategy());
-		pirate2 = pirateShipFactory.createPirateShip("Dutchman");
+		pirate1 = dutchFactory.createPirateShip("Slow");
+		pirate2 = dutchFactory.createPirateShip("Fast");
 		//pirate2.setStrategy(new ObserverStrategy());
 		loadPirateImages();
 		
 		ChristopherColumbus.addObserver(pirate1);
 		ChristopherColumbus.addObserver(pirate2);
-		
 		scene = new Scene(root, dimensions*scale, dimensions*scale);
 		oceanStage.setScene(scene);
 		oceanStage.setTitle("Ocean");
@@ -110,16 +110,20 @@ public class OceanExplorer extends Application{
 	
 	//loads pirate images to the game, no return value
 	private void loadPirateImages() {
-		Image pirateChristopherColumbusImage = new Image("images\\pirateShip.png", 50, 50, true, true);
-		pirateOneImageView = new ImageView(pirateChristopherColumbusImage);
+		Image pirateShipImage = new Image("images\\pirateShip.png", 50, 50, true, true);
+		Image dutchmanImage = new Image("images\\dutchman.png", 50, 50, true, true);
+		pirateOneImageView = new ImageView(dutchmanImage);
+		
 		pirateOneImageView.setX(oceanMap.getPirateLocation(1).x*scale);
 		pirateOneImageView.setY(oceanMap.getPirateLocation(1).y*scale);
 		root.getChildren().add(pirateOneImageView);
 		
-		pirateTwoImageView = new ImageView(pirateChristopherColumbusImage);
+		
+		pirateTwoImageView = new ImageView(dutchmanImage);
 		pirateTwoImageView.setX(oceanMap.getPirateLocation(2).x*scale);
 		pirateTwoImageView.setY(oceanMap.getPirateLocation(2).y*scale);
 		root.getChildren().add(pirateTwoImageView);
+		
 	}
 	
 	//allows the user to move Christopher Columbus, no return value
@@ -130,19 +134,23 @@ public class OceanExplorer extends Application{
 				switch(ke.getCode()) {
 					case RIGHT:
 						ChristopherColumbus.goEast();
-						pirate1.move();
+						//pirate1.move();
+						//pirate2.move();
 						break;
 					case LEFT:
 						ChristopherColumbus.goWest();
-						pirate1.move();
+						//pirate2.move();
+						//pirate1.move();
 						break;
 					case UP:
 						ChristopherColumbus.goNorth();
-						pirate1.move();
+						//pirate2.move();
+						//pirate1.move();
 						break;
 					case DOWN:
 						ChristopherColumbus.goSouth();
-						pirate1.move();
+						//pirate2.move();
+						//pirate1.move();
 						break;
 				default:
 					break;

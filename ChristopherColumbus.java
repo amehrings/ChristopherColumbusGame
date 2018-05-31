@@ -89,7 +89,6 @@ public class ChristopherColumbus implements Subject {
 	public void notifyObservers() {
 		for (Observer pirateObserver: observers)
 			pirateObserver.update(this);
-		
 	}
 	
 	

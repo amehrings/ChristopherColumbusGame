@@ -31,8 +31,9 @@ public class PirateShip implements Observer  {
 	//updates Pirate Ship of Christopher Columbus's location
 	@Override
 	public void update(ChristopherColumbus cc) {
-		
+		System.out.println("update pirate Ship");
 		if (cc instanceof ChristopherColumbus) {
+			System.out.println("update pirate Ship2");
 			ChristopherColumbusLocation = ((ChristopherColumbus) cc).getChristopherColumbusLocation();
 			move();
 		}
@@ -41,33 +42,10 @@ public class PirateShip implements Observer  {
 
 	//moves Pirate Ship closer to Christopher Columbus
 	public void move() {
-		if (currentLocation.x - ChristopherColumbusLocation.x < 0) {
-			if (currentLocation.x + 1 < oceanMap.getDimensions() 
-					&& oceanMap.isOcean(currentLocation.x+1, currentLocation.y) ) {
-				currentLocation.x++;
-			}
-		}
-		else {
-			if (currentLocation.x != 0 
-					&& oceanMap.isOcean(currentLocation.x-1, currentLocation.y)) {				
-				currentLocation.x--;
-			}
-		}
-		
-		if (currentLocation.y - ChristopherColumbusLocation.y < 0) {
-			if (currentLocation.y + 1 < oceanMap.getDimensions()
-					&& oceanMap.isOcean(currentLocation.x, currentLocation.y+1)) {
-				currentLocation.y++;
-			}
-		}
-		else {
-			if (currentLocation.y != 0
-					&& oceanMap.isOcean(currentLocation.x, currentLocation.y-1)) {
-				currentLocation.y--;
-			}
-		}  
+		strat.move();
 	}
 
+	
 	public String getStrategy() {
 		return strat.getStrategy();
 		
@@ -76,6 +54,7 @@ public class PirateShip implements Observer  {
 	public void setStrategy(Strategy strat) {
 		this.strat = strat;
 	}
+	
 
 	
 }

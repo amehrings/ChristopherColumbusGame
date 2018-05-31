@@ -9,7 +9,7 @@ public class RegularPirateFactory extends PirateFactory {
 		if (type.equals("Vertical")){
 			oceanMap.addPirateNumber();
 			number = oceanMap.getPirateNumber();
-			return new PirateShip(oceanMap, number, "Vertical");
+			return new RegularPirate(oceanMap, number, "Vertical");
 		}
 		else if (type.equals("Horizontal")){
 			oceanMap.addPirateNumber();
