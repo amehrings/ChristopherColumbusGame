@@ -10,13 +10,22 @@ public class VerticalMoveStrategy implements Strategy {
 	OceanMap oceanMap = OceanMap.getInstance();
 	
 	@Override
-	public void movePirateShip() {
+	public void move() {
+		currentLocation.y++;
 		
+		/*if (currentLocation.y + 1 < oceanMap.getDimensions() && oceanMap.isOcean(currentLocation.x, currentLocation.y+1)) {
+			currentLocation.y--;
+
+		}
+		
+		if (currentLocation.y != 0 && oceanMap.isOcean(currentLocation.x, currentLocation.y-1)) {
+			currentLocation.y++;
+		}*/
 	}
 
 	@Override
 	public String getStrategy() {
-		return "BasicMoveStrategy";
+		return "Vertical";
 		
 	}
 

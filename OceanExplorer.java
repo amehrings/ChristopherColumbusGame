@@ -35,6 +35,8 @@ public class OceanExplorer extends Application{
 	ImageView ChristopherColumbusImageView;
 	ImageView pirateOneImageView;
 	ImageView pirateTwoImageView;
+	ImageView pirateVertImageView;
+	ImageView pirateHorzImageView;
 	ImageView islandImageView;
 	
 	ChristopherColumbus ChristopherColumbus;
@@ -129,14 +131,32 @@ public class OceanExplorer extends Application{
 		pirateTwoImageView.setY(pirate2.getPirateShipLocation().y*scale);
 		root.getChildren().add(pirateTwoImageView);
 		
+		pirateVertImageView = new ImageView(pirateShipImage);
+		pirateVertImageView.setX(pirateVert.getPirateShipLocation().x*scale);
+		pirateVertImageView.setY(pirateVert.getPirateShipLocation().y*scale);
+		root.getChildren().add(pirateVertImageView);
+		
+		pirateHorzImageView = new ImageView(pirateShipImage);
+		pirateHorzImageView.setX(pirateHorz.getPirateShipLocation().x*scale);
+		pirateHorzImageView.setY(pirateHorz.getPirateShipLocation().y*scale);
+		root.getChildren().add(pirateHorzImageView);
+		
 	}
 	
 	//allows the user to move Christopher Columbus, no return value
 	private void startSailing() {
 		
+		
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent ke) {
+				if(pirate1.getPirateShipLocation().x == oceanMap.getChristopherColumbusLocation().x && pirate1.getPirateShipLocation().y == oceanMap.getChristopherColumbusLocation().y 
+						|| pirate2.getPirateShipLocation().x == oceanMap.getChristopherColumbusLocation().x && pirate2.getPirateShipLocation().y == oceanMap.getChristopherColumbusLocation().y )
+						{			
+							System.out.println("GAME OVER");
+							System.exit(0);
+						}
+				
 				switch(ke.getCode()) {
 					case RIGHT:
 						ChristopherColumbus.goEast();
@@ -154,6 +174,10 @@ public class OceanExplorer extends Application{
 				default:
 					break;
 				}
+				
+				//pirateVert.move();
+				//pirateHorz.move();
+				
 				ChristopherColumbusImageView.setX(oceanMap.getChristopherColumbusLocation().x*scale);
 				ChristopherColumbusImageView.setY(oceanMap.getChristopherColumbusLocation().y*scale);
 				
@@ -162,6 +186,12 @@ public class OceanExplorer extends Application{
 				
 				pirateTwoImageView.setX(pirate2.getPirateShipLocation().x*scale);
 				pirateTwoImageView.setY(pirate2.getPirateShipLocation().y*scale);
+				
+				pirateVertImageView.setX(pirateVert.getPirateShipLocation().x*scale);
+				pirateVertImageView.setY(pirateVert.getPirateShipLocation().y*scale);
+				
+				pirateHorzImageView.setX(pirateHorz.getPirateShipLocation().x*scale);
+				pirateHorzImageView.setY(pirateHorz.getPirateShipLocation().y*scale);
 			}
 		});
 	}

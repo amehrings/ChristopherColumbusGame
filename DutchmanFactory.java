@@ -3,19 +3,14 @@
 public class DutchmanFactory extends PirateFactory {
 	
 	OceanMap oceanMap = OceanMap.getInstance();
-	int number = oceanMap.getPirateNumber();
 	
 	@Override
 	public PirateShip createPirateShip(String type) {
 		if (type.equals("Fast")){
-			oceanMap.addPirateNumber();
-			number = oceanMap.getPirateNumber();
-			return new Dutchman(oceanMap, number, "Fast");
+			return new Dutchman(oceanMap, "Fast");
 		}
 		else if (type.equals("Slow")){
-			oceanMap.addPirateNumber();
-			number = oceanMap.getPirateNumber();
-			return new Dutchman(oceanMap, number, "Slow");	
+			return new Dutchman(oceanMap, "Slow");	
 		} else return null;
 		
 	}

@@ -10,8 +10,8 @@ public class Dutchman extends PirateShip {
 	int speed;
 	Random rand = new Random();
 	
-	public Dutchman(OceanMap oceanMap, int n, String type) {
-		super(oceanMap, n, type);
+	public Dutchman(OceanMap oceanMap, String type) {
+		super(oceanMap, type);
 	}
 	
 	public void move() {

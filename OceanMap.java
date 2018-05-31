@@ -15,8 +15,6 @@ public class OceanMap {
 	int pirateNumber = 0;
 	Random rand = new Random();
 	Point ChristopherColumbusLocation;
-	Point pirateOneLocation;
-	Point pirateTwoLocation;
 	
 	//Ocean Map constructor which creates the grid, places the islands and ChristopherColumbus
 	private OceanMap(int dimensions, int islandCount) {
@@ -25,8 +23,6 @@ public class OceanMap {
 		createGrid();
 		placeIslands();
 		ChristopherColumbusLocation = placeChristopherColumbus();
-		pirateOneLocation = placePirateShip();
-		pirateTwoLocation = placePirateShip();
 	}
 	
 	public static OceanMap getInstance() {
@@ -80,20 +76,6 @@ public class OceanMap {
 		return new Point(x, y);
 	}
 	
-	//places the pirate ships onto the ocean
-	private Point placePirateShip() {
-		boolean placedPirateShip = false;
-		int x = 0, y = 0;
-		while (!placedPirateShip) {
-			x = rand.nextInt(dimensions);
-			y = rand.nextInt(dimensions);
-			if (islands[x][y] == false) {
-				placedPirateShip = true;
-			}
-		}
-		return new Point(x, y);
-	}
-	
 	//returns the ChristopherColumbus location as a Point
 	public Point getChristopherColumbusLocation() {
 		return ChristopherColumbusLocation;
@@ -107,13 +89,5 @@ public class OceanMap {
 	//returns true if the tile at x, y is an ocean tile, false otherwise
 	public boolean isOcean(int x, int y) {
 		return !islands[x][y];
-	}
-	
-	public void addPirateNumber() {
-		pirateNumber ++;
-	}
-	
-	public int getPirateNumber() {
-		return pirateNumber;
 	}
 }

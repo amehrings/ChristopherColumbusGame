@@ -13,13 +13,11 @@ public class PirateShip implements Observer  {
 	boolean[][] islandMap;
 	Point ChristopherColumbusLocation;
 	Strategy strat;
-	int number = oceanMap.getPirateNumber();
 	String type;
 	Random rand = new Random();
 	
-	public PirateShip(OceanMap oceanMap, int n, String type) {
+	public PirateShip(OceanMap oceanMap, String type) {
 		this.oceanMap = oceanMap;
-		this.number = n;
 		this.type = type;
 		while(true){
 
@@ -47,9 +45,7 @@ public class PirateShip implements Observer  {
 	//updates Pirate Ship of Christopher Columbus's location
 	@Override
 	public void update(ChristopherColumbus cc) {
-		System.out.println("update pirate Ship");
 		if (cc instanceof ChristopherColumbus) {
-			System.out.println("update pirate Ship2");
 			ChristopherColumbusLocation = ((ChristopherColumbus) cc).getChristopherColumbusLocation();
 			move();
 		}

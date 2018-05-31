@@ -2,19 +2,16 @@
 public class RegularPirateFactory extends PirateFactory {
 	
 	OceanMap oceanMap = OceanMap.getInstance();
-	int number = oceanMap.getPirateNumber();
+
 	
 	@Override
 	public PirateShip createPirateShip(String type) {
 		if (type.equals("Vertical")){
-			oceanMap.addPirateNumber();
-			number = oceanMap.getPirateNumber();
-			return new RegularPirate(oceanMap, number, "Vertical");
+			
+			return new RegularPirate(oceanMap, "Vertical");
 		}
 		else if (type.equals("Horizontal")){
-			oceanMap.addPirateNumber();
-			number = oceanMap.getPirateNumber();
-			return new PirateShip(oceanMap, number, "Horizontal");	
+			return new PirateShip(oceanMap, "Horizontal");	
 		} else return null;
 		
 	}

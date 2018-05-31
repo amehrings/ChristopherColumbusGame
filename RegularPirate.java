@@ -13,12 +13,11 @@ public class RegularPirate extends PirateShip implements Observer {
 	boolean[][] islandMap;
 	Point ChristopherColumbusLocation;
 	Strategy strat;
-	int number = oceanMap.getPirateNumber();
 	String type;
 	
 	
-	public RegularPirate(OceanMap oceanMap, int n, String type) {
-		super(oceanMap, n, type);
+	public RegularPirate(OceanMap oceanMap, String type) {
+		super(oceanMap, type);
 	}
 
 	public String getPirateType() {
