@@ -38,6 +38,7 @@ public class OceanExplorer extends Application{
 	ImageView pirateVertImageView;
 	ImageView pirateHorzImageView;
 	ImageView islandImageView;
+	ImageView treasureImageView;
 	
 	ChristopherColumbus ChristopherColumbus;
 	RegularPirateFactory regPirateFactory = new RegularPirateFactory();
@@ -56,6 +57,8 @@ public class OceanExplorer extends Application{
 		drawMap();
 		loadIslandImages();
 		
+		loadTreasureImage();
+				
 		ChristopherColumbus = new ChristopherColumbus(oceanMap);
 		loadChristopherColumbusImage();
 		
@@ -115,6 +118,15 @@ public class OceanExplorer extends Application{
 		}
 	}
 	
+	//loads treasureImage
+	private void loadTreasureImage() {
+		Image treasureImage = new Image("images\\treasure.png", 50, 50 , true, true);
+		treasureImageView = new ImageView(treasureImage);
+		treasureImageView.setX(oceanMap.getTreasureLocation().x*scale);
+		treasureImageView.setY(oceanMap.getTreasureLocation().y*scale);
+		root.getChildren().add(treasureImageView);
+	}
+	
 	//loads pirate images to the game, no return value
 	private void loadPirateImages() {
 		Image pirateShipImage = new Image("images\\pirateShip.png", 50, 50, true, true);
@@ -151,11 +163,18 @@ public class OceanExplorer extends Application{
 			@Override
 			public void handle(KeyEvent ke) {
 				if(pirate1.getPirateShipLocation().x == oceanMap.getChristopherColumbusLocation().x && pirate1.getPirateShipLocation().y == oceanMap.getChristopherColumbusLocation().y 
-						|| pirate2.getPirateShipLocation().x == oceanMap.getChristopherColumbusLocation().x && pirate2.getPirateShipLocation().y == oceanMap.getChristopherColumbusLocation().y )
+					|| pirate2.getPirateShipLocation().x == oceanMap.getChristopherColumbusLocation().x && pirate2.getPirateShipLocation().y == oceanMap.getChristopherColumbusLocation().y )
 						{			
 							System.out.println("GAME OVER");
 							System.exit(0);
 						}
+				
+				if((oceanMap.getChristopherColumbusLocation().x ==oceanMap.getTreasureLocation().x 
+					&& oceanMap.getChristopherColumbusLocation().y == oceanMap.getTreasureLocation().y))
+					{
+						System.out.println(" YOU WIN ");
+						System.exit(0);
+					}
 				
 				switch(ke.getCode()) {
 					case RIGHT:

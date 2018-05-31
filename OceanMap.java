@@ -15,6 +15,7 @@ public class OceanMap {
 	int pirateNumber = 0;
 	Random rand = new Random();
 	Point ChristopherColumbusLocation;
+	Point treasureLocation;
 	
 	//Ocean Map constructor which creates the grid, places the islands and ChristopherColumbus
 	private OceanMap(int dimensions, int islandCount) {
@@ -23,6 +24,7 @@ public class OceanMap {
 		createGrid();
 		placeIslands();
 		ChristopherColumbusLocation = placeChristopherColumbus();
+		treasureLocation = placeTreasure();
 	}
 	
 	public static OceanMap getInstance() {
@@ -74,6 +76,24 @@ public class OceanMap {
 			}
 		}
 		return new Point(x, y);
+	}
+	
+	//places treasure randomly
+	private Point placeTreasure() {
+		boolean placedTreasure = false;
+		int x = 0, y = 0;
+		while (!placedTreasure) {
+			x = rand.nextInt(dimensions);
+			y = rand.nextInt(dimensions);
+			if (islands[x][y] == false) {
+				placedTreasure = true;
+			}
+		}
+		return new Point(x, y);
+	}
+	
+	public Point getTreasureLocation() {
+		return treasureLocation;
 	}
 	
 	//returns the ChristopherColumbus location as a Point
