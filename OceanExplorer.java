@@ -42,6 +42,8 @@ public class OceanExplorer extends Application{
 	DutchmanFactory dutchFactory = new DutchmanFactory();
 	PirateShip pirate1;
 	PirateShip pirate2;
+	PirateShip pirateHorz;
+	PirateShip pirateVert;
 	
 	@Override
 	public void start(Stage oceanStage) throws Exception {
@@ -55,11 +57,14 @@ public class OceanExplorer extends Application{
 		ChristopherColumbus = new ChristopherColumbus(oceanMap);
 		loadChristopherColumbusImage();
 		
-		//pirate1 = regPirateFactory.createPirateShip("Vertical");
-		//pirate1.setStrategy(new VerticalMoveStrategy());
 		pirate1 = dutchFactory.createPirateShip("Slow");
 		pirate2 = dutchFactory.createPirateShip("Fast");
-		//pirate2.setStrategy(new ObserverStrategy());
+		
+		pirateVert = regPirateFactory.createPirateShip("Vertical");
+		pirateHorz = regPirateFactory.createPirateShip("Horizontal");
+
+		pirateVert.setStrategy(new VerticalMoveStrategy());
+		pirateHorz.setStrategy(new HorizontalMoveStrategy());
 		loadPirateImages();
 		
 		ChristopherColumbus.addObserver(pirate1);
@@ -114,43 +119,37 @@ public class OceanExplorer extends Application{
 		Image dutchmanImage = new Image("images\\dutchman.png", 50, 50, true, true);
 		pirateOneImageView = new ImageView(dutchmanImage);
 		
-		pirateOneImageView.setX(oceanMap.getPirateLocation(1).x*scale);
-		pirateOneImageView.setY(oceanMap.getPirateLocation(1).y*scale);
+		pirateOneImageView.setX(pirate1.getPirateShipLocation().x*scale);
+		pirateOneImageView.setY(pirate1.getPirateShipLocation().y*scale);
 		root.getChildren().add(pirateOneImageView);
 		
 		
 		pirateTwoImageView = new ImageView(dutchmanImage);
-		pirateTwoImageView.setX(oceanMap.getPirateLocation(2).x*scale);
-		pirateTwoImageView.setY(oceanMap.getPirateLocation(2).y*scale);
+		pirateTwoImageView.setX(pirate2.getPirateShipLocation().x*scale);
+		pirateTwoImageView.setY(pirate2.getPirateShipLocation().y*scale);
 		root.getChildren().add(pirateTwoImageView);
 		
 	}
 	
 	//allows the user to move Christopher Columbus, no return value
 	private void startSailing() {
+		
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent ke) {
 				switch(ke.getCode()) {
 					case RIGHT:
 						ChristopherColumbus.goEast();
-						//pirate1.move();
-						//pirate2.move();
 						break;
 					case LEFT:
 						ChristopherColumbus.goWest();
-						//pirate2.move();
-						//pirate1.move();
 						break;
 					case UP:
 						ChristopherColumbus.goNorth();
-						//pirate2.move();
-						//pirate1.move();
 						break;
 					case DOWN:
 						ChristopherColumbus.goSouth();
-						//pirate2.move();
-						//pirate1.move();
+
 						break;
 				default:
 					break;

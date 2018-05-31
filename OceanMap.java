@@ -99,15 +99,6 @@ public class OceanMap {
 		return ChristopherColumbusLocation;
 	}
 	
-	//returns the pirate locations based on its number a Point
-	public Point getPirateLocation(int n) {
-		if (n == 2) {
-			return pirateTwoLocation;
-		}
-		return pirateOneLocation;
-	}
-	
-	
 	//return the dimensions of the ocean board
 	public int getDimensions() {
 		return dimensions;
