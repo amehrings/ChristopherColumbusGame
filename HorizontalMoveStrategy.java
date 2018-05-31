@@ -1,17 +1,28 @@
 public class HorizontalMoveStrategy implements Strategy {
 
 	OceanMap oceanMap = OceanMap.getInstance();
-	
+	boolean direction = true;
+
 	@Override
 	public void move(PirateShip pirate) {
-		pirate.currentLocation.x++;
-		
-		/*if (currentLocation.x + 1 < oceanMap.getDimensions() && oceanMap.isOcean(currentLocation.x+1, currentLocation.y) ) {
-			currentLocation.x++;
+		if (pirate.currentLocation.x + 1 < oceanMap.getDimensions() && direction == true) {
+			if (!(oceanMap.isOcean(pirate.currentLocation.x+1, pirate.currentLocation.y))) {
+				direction = false;
+			}
+			pirate.currentLocation.x++;
+		}else {
+			direction = false;
 		}
-		if (currentLocation.x != 0 && oceanMap.isOcean(currentLocation.x-1, currentLocation.y)) {				
-			currentLocation.x--;
-		}*/
+		
+		if (pirate.currentLocation.x != 0 && direction == false) {
+			if (!(oceanMap.isOcean(pirate.currentLocation.x-1, pirate.currentLocation.y))) {				
+				direction = true;
+			}
+			pirate.currentLocation.x--;
+		}else {
+			direction = true;
+		}
+		
 	}
 
 	@Override

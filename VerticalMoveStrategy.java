@@ -3,23 +3,29 @@
  * SE350
  */
 
-import java.awt.Point;
-
 public class VerticalMoveStrategy implements Strategy {
 	OceanMap oceanMap = OceanMap.getInstance();
+	boolean direction = true;
 	
 	@Override
 	public void move(PirateShip pirate) {
-		pirate.currentLocation.y++;
-		
-		/*if (currentLocation.y + 1 < oceanMap.getDimensions() && oceanMap.isOcean(currentLocation.x, currentLocation.y+1)) {
-			currentLocation.y--;
-
+		if (pirate.currentLocation.y + 1 < oceanMap.getDimensions() && direction == true) {
+			if (!(oceanMap.isOcean(pirate.currentLocation.x, pirate.currentLocation.y+1))) {
+				direction = false;
+			}
+			pirate.currentLocation.y++;
+		}else {
+			direction = false;
 		}
 		
-		if (currentLocation.y != 0 && oceanMap.isOcean(currentLocation.x, currentLocation.y-1)) {
-			currentLocation.y++;
-		}*/
+		if (pirate.currentLocation.y != 0 && direction == false) {
+			if (!(oceanMap.isOcean(pirate.currentLocation.x, pirate.currentLocation.y-1))) {				
+				direction = true;
+			}
+			pirate.currentLocation.y--;
+		}else {
+			direction = true;
+		}
 	}
 
 	@Override

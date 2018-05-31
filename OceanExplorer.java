@@ -45,8 +45,8 @@ public class OceanExplorer extends Application{
 	DutchmanFactory dutchFactory = new DutchmanFactory();
 	PirateShip pirate1;
 	PirateShip pirate2;
-	PirateShip pirateHorz;
-	PirateShip pirateVert;
+	static PirateShip pirateHorz;
+	static PirateShip pirateVert;
 	
 	@Override
 	public void start(Stage oceanStage) throws Exception {
@@ -157,13 +157,14 @@ public class OceanExplorer extends Application{
 	
 	//allows the user to move Christopher Columbus, no return value
 	private void startSailing() {
-		
-		
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent ke) {
 				if(pirate1.getPirateShipLocation().x == oceanMap.getChristopherColumbusLocation().x && pirate1.getPirateShipLocation().y == oceanMap.getChristopherColumbusLocation().y 
-					|| pirate2.getPirateShipLocation().x == oceanMap.getChristopherColumbusLocation().x && pirate2.getPirateShipLocation().y == oceanMap.getChristopherColumbusLocation().y )
+				|| pirate2.getPirateShipLocation().x == oceanMap.getChristopherColumbusLocation().x && pirate2.getPirateShipLocation().y == oceanMap.getChristopherColumbusLocation().y 
+				||
+				pirateVert.getPirateShipLocation().x == oceanMap.getChristopherColumbusLocation().x && pirateVert.getPirateShipLocation().y == oceanMap.getChristopherColumbusLocation().y 
+				|| pirateHorz.getPirateShipLocation().x == oceanMap.getChristopherColumbusLocation().x && pirateHorz.getPirateShipLocation().y == oceanMap.getChristopherColumbusLocation().y )
 						{			
 							System.out.println("GAME OVER");
 							System.exit(0);
@@ -218,6 +219,7 @@ public class OceanExplorer extends Application{
 	
 	public static void main(String[] args) {
         launch(args);
+		
     }
 
 }

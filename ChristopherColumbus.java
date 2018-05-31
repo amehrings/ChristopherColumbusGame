@@ -29,9 +29,7 @@ public class ChristopherColumbus implements Subject {
 	
 	//moves the ChristopherColumbus east if there is no island there
 	public void goEast() {
-		if (currentLocation.x <= oceanMap.getDimensions() - 1 
-				&& oceanMap.isOcean(currentLocation.x+1, currentLocation.y) 
-				&& currentLocation.x+1 <= oceanMap.getDimensions()-1) {
+		if (currentLocation.x < oceanMap.getDimensions() - 1  && oceanMap.isOcean(currentLocation.x+1, currentLocation.y)){
 			currentLocation.x++;
 			//setChanged();
 			notifyObservers();
@@ -41,8 +39,7 @@ public class ChristopherColumbus implements Subject {
 	
 	//moves the ChristopherColumbus west if there is no island there
 	public void goWest() {
-		if (currentLocation.x <= oceanMap.getDimensions() - 1 
-				&& oceanMap.isOcean(currentLocation.x-1, currentLocation.y)) {
+		if (currentLocation.x > 0 && oceanMap.isOcean(currentLocation.x-1, currentLocation.y)) {
 			currentLocation.x--;
 			//setChanged();
 			notifyObservers();
@@ -51,8 +48,7 @@ public class ChristopherColumbus implements Subject {
 	
 	//moves the ChristopherColumbus north if there is no island there
 	public void goNorth() {
-		if (currentLocation.y <= oceanMap.getDimensions() - 1 
-				&& oceanMap.isOcean(currentLocation.x, currentLocation.y-1)) {
+		if (currentLocation.y > 0 && oceanMap.isOcean(currentLocation.x, currentLocation.y-1)) {
 			currentLocation.y--;
 			//setChanged();
 			notifyObservers();
@@ -61,9 +57,7 @@ public class ChristopherColumbus implements Subject {
 	
 	//moves the ChristopherColumbus south if there is no island there
 	public void goSouth() {
-		if (currentLocation.y <= oceanMap.getDimensions() - 1 
-				&& oceanMap.isOcean(currentLocation.x, currentLocation.y+1) 
-				&& currentLocation.y+1 <= oceanMap.getDimensions()-1) {
+		if (currentLocation.y < oceanMap.getDimensions()-1 && oceanMap.isOcean(currentLocation.x, currentLocation.y+1)){
 			currentLocation.y++;
 			//setChanged();
 			notifyObservers();
