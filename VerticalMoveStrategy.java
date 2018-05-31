@@ -6,12 +6,11 @@
 import java.awt.Point;
 
 public class VerticalMoveStrategy implements Strategy {
-	Point currentLocation;
 	OceanMap oceanMap = OceanMap.getInstance();
 	
 	@Override
-	public void move() {
-		currentLocation.y++;
+	public void move(PirateShip pirate) {
+		pirate.currentLocation.y++;
 		
 		/*if (currentLocation.y + 1 < oceanMap.getDimensions() && oceanMap.isOcean(currentLocation.x, currentLocation.y+1)) {
 			currentLocation.y--;

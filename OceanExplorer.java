@@ -175,8 +175,8 @@ public class OceanExplorer extends Application{
 					break;
 				}
 				
-				//pirateVert.move();
-				//pirateHorz.move();
+				pirateVert.move();
+				pirateHorz.move();
 				
 				ChristopherColumbusImageView.setX(oceanMap.getChristopherColumbusLocation().x*scale);
 				ChristopherColumbusImageView.setY(oceanMap.getChristopherColumbusLocation().y*scale);

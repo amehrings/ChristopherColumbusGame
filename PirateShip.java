@@ -54,7 +54,7 @@ public class PirateShip implements Observer  {
 
 	//moves Pirate Ship closer to Christopher Columbus
 	public void move() {
-		strat.move();
+		strat.move(this);
 	}
 
 	

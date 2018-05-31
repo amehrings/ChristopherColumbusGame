@@ -4,6 +4,6 @@
  */
 
 public interface Strategy {
-	public void move();
 	public String getStrategy();
+	public void move(PirateShip pirate);
 }
