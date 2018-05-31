@@ -4,6 +4,7 @@
  */
 
 import java.awt.Point;
+import java.util.Random;
 
 public class PirateShip implements Observer  {
 
@@ -14,12 +15,27 @@ public class PirateShip implements Observer  {
 	Strategy strat;
 	int number = oceanMap.getPirateNumber();
 	String type;
+	Random rand = new Random();
 	
 	public PirateShip(OceanMap oceanMap, int n, String type) {
 		this.oceanMap = oceanMap;
 		this.number = n;
 		this.type = type;
-		currentLocation = oceanMap.getPirateLocation(n);
+		while(true){
+
+			int x = rand.nextInt(oceanMap.dimensions);
+
+			int y = rand.nextInt(oceanMap.dimensions);
+
+			if(oceanMap.isOcean(x,y) && oceanMap.getChristopherColumbusLocation().x != x && oceanMap.getChristopherColumbusLocation().y != y){
+
+				currentLocation = new Point(x,y);
+
+				break;
+
+			}
+
+		}
 	}
 	
 	
