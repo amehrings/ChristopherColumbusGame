@@ -23,27 +23,23 @@ public class Dutchman extends PirateShip {
 		
 		if (rand.nextInt(speed) == 1){
 			if (currentLocation.x - ChristopherColumbusLocation.x < 0) {
-				if (currentLocation.x + 1 < oceanMap.getDimensions() 
-						&& oceanMap.isOcean(currentLocation.x+1, currentLocation.y) ) {
+				if (currentLocation.x + 1 < oceanMap.getDimensions()) {
 					currentLocation.x++;
 				}
 			}
 			else {
-				if (currentLocation.x != 0 
-						&& oceanMap.isOcean(currentLocation.x-1, currentLocation.y)) {				
+				if (currentLocation.x != 0) {				
 					currentLocation.x--;
 				}
 			}
 			
 			if (currentLocation.y - ChristopherColumbusLocation.y < 0) {
-				if (currentLocation.y + 1 < oceanMap.getDimensions()
-						&& oceanMap.isOcean(currentLocation.x, currentLocation.y+1)) {
+				if (currentLocation.y + 1 < oceanMap.getDimensions()) {
 					currentLocation.y++;
 				}
 			}
 			else {
-				if (currentLocation.y != 0
-						&& oceanMap.isOcean(currentLocation.x, currentLocation.y-1)) {
+				if (currentLocation.y != 0) {
 					currentLocation.y--;
 				}
 			} 
