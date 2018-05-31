@@ -80,15 +80,15 @@ public class OceanMap {
 		return new Point(x, y);
 	}
 	
-	//places the pirate ChristopherColumbuss onto the ocean
+	//places the pirate ships onto the ocean
 	private Point placePirateShip() {
-		boolean placedPirateChristopherColumbus = false;
+		boolean placedPirateShip = false;
 		int x = 0, y = 0;
-		while (!placedPirateChristopherColumbus) {
+		while (!placedPirateShip) {
 			x = rand.nextInt(dimensions);
 			y = rand.nextInt(dimensions);
 			if (islands[x][y] == false) {
-				placedPirateChristopherColumbus = true;
+				placedPirateShip = true;
 			}
 		}
 		return new Point(x, y);

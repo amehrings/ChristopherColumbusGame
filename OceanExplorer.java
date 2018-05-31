@@ -157,11 +157,11 @@ public class OceanExplorer extends Application{
 				ChristopherColumbusImageView.setX(oceanMap.getChristopherColumbusLocation().x*scale);
 				ChristopherColumbusImageView.setY(oceanMap.getChristopherColumbusLocation().y*scale);
 				
-				pirateOneImageView.setX(oceanMap.getPirateLocation(1).x*scale);
-				pirateOneImageView.setY(oceanMap.getPirateLocation(1).y*scale);
+				pirateOneImageView.setX(pirate1.getPirateShipLocation().x*scale);
+				pirateOneImageView.setY(pirate1.getPirateShipLocation().y*scale);
 				
-				pirateTwoImageView.setX(oceanMap.getPirateLocation(2).x*scale);
-				pirateTwoImageView.setY(oceanMap.getPirateLocation(2).y*scale);
+				pirateTwoImageView.setX(pirate2.getPirateShipLocation().x*scale);
+				pirateTwoImageView.setY(pirate2.getPirateShipLocation().y*scale);
 			}
 		});
 	}
