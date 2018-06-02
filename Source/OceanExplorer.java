@@ -24,6 +24,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.geometry.Point2D;
 
 public class OceanExplorer extends Application{
+	
+	//OceanMap, Island, and JavaFX Setup
 	Random randIsland = new Random();
 	int randIslands = randIsland.nextInt(20);
 	final int dimensions = 20; 
@@ -36,6 +38,9 @@ public class OceanExplorer extends Application{
 	Scene scene;
 	Pane root;
 	
+	
+	
+	//ImageView Creation
 	ImageView ChristopherColumbusImageView;
 	ImageView pirateOneImageView;
 	ImageView pirateTwoImageView;
@@ -50,22 +55,30 @@ public class OceanExplorer extends Application{
 	ImageView winImageView;
 	ImageView loseImageView;
 	
+	
+	
+	//Ship Creation
 	ChristopherColumbus ChristopherColumbus;
 	RegularPirateFactory regPirateFactory = new RegularPirateFactory();
 	DutchmanFactory dutchFactory = new DutchmanFactory();
 	PirateShip pirate1;
 	PirateShip pirate2;
+	PirateShip pirateHorz;
+	PirateShip pirateVert;
 	
+	//Monster Creation
 	Monster monster1;
 	Monster monster2;
 	Monster monster3;
 	Monster monster4;
 	
+	//Container Creation for composite pattern
 	Container container1;
 	Container container2;
 	
-	PirateShip pirateHorz;
-	PirateShip pirateVert;
+	
+	
+	
 	
 	@Override
 	public void start(Stage oceanStage) throws Exception {
@@ -74,13 +87,15 @@ public class OceanExplorer extends Application{
 		
 		root = new AnchorPane();
 		drawMap();
-		loadIslandImages();
 		
+		loadIslandImages();
 		loadTreasureImage();
 				
 		ChristopherColumbus = new ChristopherColumbus(oceanMap);
 		loadChristopherColumbusImage();
 		
+		
+		//dutchmen factory, adding observers to ship, pirate ship moving strategy pattern
 		pirate1 = dutchFactory.createPirateShip("Slow");
 		pirate2 = dutchFactory.createPirateShip("Fast");
 		
@@ -94,17 +109,21 @@ public class OceanExplorer extends Application{
 		ChristopherColumbus.addObserver(pirate1);
 		ChristopherColumbus.addObserver(pirate2);
 
-		container1 = new Container(3);
-		root.getChildren().add(container1.getRectangle());
-		container1.place(new Point2D(randIsland.nextInt(dimensions - 10), randIsland.nextInt(dimensions - 10)));
-		container2 = new Container(5);
-		container2.place(new Point2D(randIsland.nextInt(dimensions - 5), randIsland.nextInt(dimensions - 5)));
 		
+		//monster & random container creation for composite
 		monster1 = new Monster();
 		monster2 = new Monster();
 		monster3 = new Monster();
 		monster4 = new Monster();
 		
+		container1 = new Container(3);
+		container1.place(new Point2D(randIsland.nextInt(dimensions - 10), randIsland.nextInt(dimensions - 10)));
+		root.getChildren().add(container1.getRectangle());
+		
+		container2 = new Container(5);
+		container2.place(new Point2D(randIsland.nextInt(dimensions - 5), randIsland.nextInt(dimensions - 5)));
+		root.getChildren().add(container2.getRectangle());
+
 		container1.addChild(monster1);
 		container1.addChild(monster2);
 		
@@ -113,12 +132,16 @@ public class OceanExplorer extends Application{
 		
 		loadMonsterImages();
 		
+		
+		
 		scene = new Scene(root, dimensions*scale, dimensions*scale);
 		oceanStage.setScene(scene);
 		oceanStage.setTitle("Ocean");
 		oceanStage.show();
 		startSailing();
 	}
+	
+	
 	
 	//draws the Map of the game, no return value
 	public void drawMap() {
@@ -132,6 +155,8 @@ public class OceanExplorer extends Application{
 		   } 
 		} 
 	}
+	
+	
 	
 	//loads Christopher Columbus's Image to the game, no return value
 	private void loadChristopherColumbusImage() {
@@ -157,7 +182,9 @@ public class OceanExplorer extends Application{
 		}
 	}
 	
-	//loads treasureImage
+	
+	
+	//loads treasureImage, no return value
 	private void loadTreasureImage() {
 		Image treasureImage = new Image("images\\treasure.png", 50, 50 , true, true);
 		treasureImageView = new ImageView(treasureImage);
@@ -165,6 +192,8 @@ public class OceanExplorer extends Application{
 		treasureImageView.setY(oceanMap.getTreasureLocation().y*scale);
 		root.getChildren().add(treasureImageView);
 	}
+	
+	
 	
 	//loads pirate images to the game, no return value
 	private void loadPirateImages() {
@@ -194,6 +223,8 @@ public class OceanExplorer extends Application{
 		
 	}
 	
+	
+	//load monster images, no return value
 	public void loadMonsterImages() {
 		Image monsterImage = new Image("images\\kraken.png", 50, 50, true, true);
 		
@@ -219,6 +250,8 @@ public class OceanExplorer extends Application{
 		root.getChildren().add(monsterFourImageView); 
 	}
 	
+	
+	//load lose image when running into monster, dutchmen, or pirate, no return value
 	public void loadLoseImage(){
 		Image gameOver = new Image("images\\lose.png", 750,750, true, true);
 		loseImageView = new ImageView(gameOver);
@@ -227,6 +260,8 @@ public class OceanExplorer extends Application{
 		root.getChildren().add(loseImageView); 
 	}
 	
+	
+	//load win image when reaching treasure, no return value
 	public void loadWinImage(){
 		Image win = new Image("images\\win.png", 750,750, true, true);
 		winImageView = new ImageView(win);
@@ -238,6 +273,7 @@ public class OceanExplorer extends Application{
 	}
 	
 	
+	//timer for 3 seconds to display lose or win image, no return value
 	TimerTask exitApp = new TimerTask() {
 	public void run() {
 	    System.exit(0);
@@ -247,6 +283,8 @@ public class OceanExplorer extends Application{
 	public void exitTimer() {
 		timer.schedule(exitApp, new Date(System.currentTimeMillis()+3*1000));
 	}
+	
+	
 	
 	//allows the user to move Christopher Columbus, no return value
 	private void startSailing() {
@@ -260,12 +298,11 @@ public class OceanExplorer extends Application{
 				|| monster2.getMonsterLocation().getX() == oceanMap.getChristopherColumbusLocation().x && monster2.getMonsterLocation().getY() == oceanMap.getChristopherColumbusLocation().y
 				|| monster3.getMonsterLocation().getX() == oceanMap.getChristopherColumbusLocation().x && monster3.getMonsterLocation().getY() == oceanMap.getChristopherColumbusLocation().y
 				|| monster4.getMonsterLocation().getX() == oceanMap.getChristopherColumbusLocation().x && monster4.getMonsterLocation().getY() == oceanMap.getChristopherColumbusLocation().y)
-
-						{			
-							System.out.println("GAME OVER");
-							loadLoseImage();
-							exitTimer();
-						}
+					{			
+						System.out.println("GAME OVER");
+						loadLoseImage();
+						exitTimer();
+					}
 				
 				if((oceanMap.getChristopherColumbusLocation().x ==oceanMap.getTreasureLocation().x 
 					&& oceanMap.getChristopherColumbusLocation().y == oceanMap.getTreasureLocation().y))
@@ -329,6 +366,7 @@ public class OceanExplorer extends Application{
 			}
 		});
 	}
+	
 	
 	
 	public static void main(String[] args) {

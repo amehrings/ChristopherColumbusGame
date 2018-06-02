@@ -1,14 +1,20 @@
+import java.awt.Point;
+import java.util.Random;
+
 /* Austin Paul and Aaron Mehrings
  * Final Project
  * SE350
  */
 
+<<<<<<< HEAD
 import java.util.Random;
 
 /*This is the flying Dutchman class. It is a version of the PirateShip that follows Christopher Columbus
  * and can fly over islands. Uses the observer pattern, but not the strategy pattern to move.
  */
 
+=======
+>>>>>>> 90466b923b689d32d44b849af137ed70efb8f9b5
 public class Dutchman extends PirateShip {
 	int speed;
 	Random rand = new Random();
