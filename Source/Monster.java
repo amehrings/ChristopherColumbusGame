@@ -6,7 +6,8 @@
 import java.util.Random;
 
 import javafx.geometry.Point2D;
- 
+
+//Monster class that moves inside its containing class
 public class Monster implements Component {
 	OceanMap oceanMap = OceanMap.getInstance();
 	Monster monster;
@@ -19,30 +20,33 @@ public class Monster implements Component {
 	Random rand = new Random();
 	int res;
 	
+	//empty constructor, as its properties are set later
 	public Monster() {
 	}
 	
+	//returns a Monster object 
 	public Monster getMonster() {
 		return monster;
 	}
 	
+	//returns the Container object that this Monster is a part of
 	public Container getContainer() {
 		return currentContainer;
 	}
 	
+	//sets the Container of this object so it knows its boundaries
 	@Override
 	public void setContainer(Container container) {
 		currentContainer = container;
 	}
 	
+	//returns the Monster's location 
 	public Point2D getMonsterLocation() {
 		return currentLocation;
 	}
 	
-	public boolean containsPoint(Point2D point) {
-		return (monster.containsPoint(point));
-	}
-	
+	//places the Monster inside its container
+	@Override
 	public void place(Point2D point){
 		currentLocation = point; 
 	}

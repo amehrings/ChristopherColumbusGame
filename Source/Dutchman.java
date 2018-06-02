@@ -5,14 +5,20 @@
 
 import java.util.Random;
 
+/*This is the flying Dutchman class. It is a version of the PirateShip that follows Christopher Columbus
+ * and can fly over islands. Uses the observer pattern, but not the strategy pattern to move.
+ */
+
 public class Dutchman extends PirateShip {
 	int speed;
 	Random rand = new Random();
 	
+	//Dutchman constructor
 	public Dutchman(OceanMap oceanMap, String type) {
 		super(oceanMap, type);
 	}
 	
+	//Chases Christopher Columbus at different speeds
 	public void move() {
 		if (type.equals("Fast")) {
 			speed = 2;
@@ -45,6 +51,7 @@ public class Dutchman extends PirateShip {
 		}
 	}
 	
+	//returns a String of the the pirate type
 	public String getPirateType() {
 		return "Dutchman";
 	}

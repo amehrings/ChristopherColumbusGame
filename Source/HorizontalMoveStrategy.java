@@ -3,11 +3,13 @@
  * SE350
  */
 
+//Horizontal move strategy that utilizes the Strategy Pattern
 public class HorizontalMoveStrategy implements Strategy {
 
 	OceanMap oceanMap = OceanMap.getInstance();
 	boolean direction = true;
 
+	//Moves the pirate horizontally across the screen
 	@Override
 	public void move(PirateShip pirate) {
 		if (pirate.currentLocation.x + 1 < oceanMap.getDimensions() && direction == true) {
@@ -30,9 +32,10 @@ public class HorizontalMoveStrategy implements Strategy {
 		
 	}
 
+	//returns a String of the movement type
+	
 	@Override
 	public String getStrategy() {
-		// TODO Auto-generated method stub
 		return "Horizontal";
 	}
 

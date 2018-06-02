@@ -3,9 +3,13 @@
  * SE350
  */
 
+//Dutchman factory that creates Dutchman Pirates
+
 public class DutchmanFactory extends PirateFactory {
 	
 	OceanMap oceanMap = OceanMap.getInstance();
+	
+	//returns a Dutchman of type fast or Slow, as a PirateShip
 	
 	@Override
 	public PirateShip createPirateShip(String type) {
