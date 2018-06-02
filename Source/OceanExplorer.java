@@ -41,6 +41,7 @@ public class OceanExplorer extends Application{
 	boolean[][] islandMap;
 	Scene scene;
 	Pane root;
+	boolean keyboard = false;
 	
 	
 	
@@ -305,82 +306,88 @@ public class OceanExplorer extends Application{
 	private void startSailing() {
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			public void handle(KeyEvent ke) {
-				for(PirateShip pirate: pirateList){
-					if(pirate.getPirateShipLocation().x == oceanMap.getChristopherColumbusLocation().x && pirate.getPirateShipLocation().y == oceanMap.getChristopherColumbusLocation().y){
-						System.out.println("GAME OVER");
-						loadLoseImage();
-						exitTimer();
+				if (keyboard == false){
+					for(PirateShip pirate: pirateList){
+						if(pirate.getPirateShipLocation().x == oceanMap.getChristopherColumbusLocation().x && pirate.getPirateShipLocation().y == oceanMap.getChristopherColumbusLocation().y){
+							System.out.println("GAME OVER");
+							keyboard = true;
+							loadLoseImage();
+							exitTimer();
+						}
 					}
-				}
-				
-				for(Monster monster: monsterList){
-					if(monster.getMonsterLocation().getX() == oceanMap.getChristopherColumbusLocation().x && monster.getMonsterLocation().getY() == oceanMap.getChristopherColumbusLocation().y){
-						System.out.println("GAME OVER");
-						loadLoseImage();
-						exitTimer();
+					
+					for(Monster monster: monsterList){
+						if(monster.getMonsterLocation().getX() == oceanMap.getChristopherColumbusLocation().x && monster.getMonsterLocation().getY() == oceanMap.getChristopherColumbusLocation().y){
+							System.out.println("GAME OVER");
+							keyboard = true;
+							loadLoseImage();
+							exitTimer();
+						}
 					}
-				}
-
-				if((oceanMap.getChristopherColumbusLocation().x ==oceanMap.getTreasureLocation().x 
-					&& oceanMap.getChristopherColumbusLocation().y == oceanMap.getTreasureLocation().y))
-					{
-						System.out.println("YOU WIN");
-						loadWinImage();
-						exitTimer();
+	
+					if((oceanMap.getChristopherColumbusLocation().x ==oceanMap.getTreasureLocation().x 
+						&& oceanMap.getChristopherColumbusLocation().y == oceanMap.getTreasureLocation().y))
+						{
+							System.out.println("YOU WIN");
+							keyboard = true;
+							loadWinImage();
+							exitTimer();
+						}
+					
+					switch(ke.getCode()) {
+						case RIGHT:
+							ChristopherColumbus.goEast();
+							break;
+						case LEFT:
+							ChristopherColumbus.goWest();
+							break;
+						case UP:
+							ChristopherColumbus.goNorth();
+							break;
+						case DOWN:
+							ChristopherColumbus.goSouth();
+	
+							break;
+					default:
+						break;
 					}
-				
-				switch(ke.getCode()) {
-					case RIGHT:
-						ChristopherColumbus.goEast();
-						break;
-					case LEFT:
-						ChristopherColumbus.goWest();
-						break;
-					case UP:
-						ChristopherColumbus.goNorth();
-						break;
-					case DOWN:
-						ChristopherColumbus.goSouth();
-
-						break;
-				default:
-					break;
+					
+					pirateVert.move();
+					pirateHorz.move();
+					monster1.move();
+					monster2.move();
+					monster3.move();
+					monster4.move();
+					
+					ChristopherColumbusImageView.setX(oceanMap.getChristopherColumbusLocation().x*scale);
+					ChristopherColumbusImageView.setY(oceanMap.getChristopherColumbusLocation().y*scale);
+					
+					pirateOneImageView.setX(pirate1.getPirateShipLocation().x*scale);
+					pirateOneImageView.setY(pirate1.getPirateShipLocation().y*scale);
+					
+					pirateTwoImageView.setX(pirate2.getPirateShipLocation().x*scale);
+					pirateTwoImageView.setY(pirate2.getPirateShipLocation().y*scale);
+					
+					pirateVertImageView.setX(pirateVert.getPirateShipLocation().x*scale);
+					pirateVertImageView.setY(pirateVert.getPirateShipLocation().y*scale);
+					
+					pirateHorzImageView.setX(pirateHorz.getPirateShipLocation().x*scale);
+					pirateHorzImageView.setY(pirateHorz.getPirateShipLocation().y*scale);
+					
+					monsterOneImageView.setX(monster1.getMonsterLocation().getX()*scale);
+					monsterOneImageView.setY(monster1.getMonsterLocation().getY()*scale);
+					
+					monsterTwoImageView.setX(monster2.getMonsterLocation().getX()*scale);
+					monsterTwoImageView.setY(monster2.getMonsterLocation().getY()*scale);
+					
+					monsterThreeImageView.setX(monster3.getMonsterLocation().getX()*scale);
+					monsterThreeImageView.setY(monster3.getMonsterLocation().getY()*scale);
+					
+					monsterFourImageView.setX(monster4.getMonsterLocation().getX()*scale);
+					monsterFourImageView.setY(monster4.getMonsterLocation().getY()*scale);
 				}
-				
-				pirateVert.move();
-				pirateHorz.move();
-				monster1.move();
-				monster2.move();
-				monster3.move();
-				monster4.move();
-				
-				ChristopherColumbusImageView.setX(oceanMap.getChristopherColumbusLocation().x*scale);
-				ChristopherColumbusImageView.setY(oceanMap.getChristopherColumbusLocation().y*scale);
-				
-				pirateOneImageView.setX(pirate1.getPirateShipLocation().x*scale);
-				pirateOneImageView.setY(pirate1.getPirateShipLocation().y*scale);
-				
-				pirateTwoImageView.setX(pirate2.getPirateShipLocation().x*scale);
-				pirateTwoImageView.setY(pirate2.getPirateShipLocation().y*scale);
-				
-				pirateVertImageView.setX(pirateVert.getPirateShipLocation().x*scale);
-				pirateVertImageView.setY(pirateVert.getPirateShipLocation().y*scale);
-				
-				pirateHorzImageView.setX(pirateHorz.getPirateShipLocation().x*scale);
-				pirateHorzImageView.setY(pirateHorz.getPirateShipLocation().y*scale);
-				
-				monsterOneImageView.setX(monster1.getMonsterLocation().getX()*scale);
-				monsterOneImageView.setY(monster1.getMonsterLocation().getY()*scale);
-				
-				monsterTwoImageView.setX(monster2.getMonsterLocation().getX()*scale);
-				monsterTwoImageView.setY(monster2.getMonsterLocation().getY()*scale);
-				
-				monsterThreeImageView.setX(monster3.getMonsterLocation().getX()*scale);
-				monsterThreeImageView.setY(monster3.getMonsterLocation().getY()*scale);
-				
-				monsterFourImageView.setX(monster4.getMonsterLocation().getX()*scale);
-				monsterFourImageView.setY(monster4.getMonsterLocation().getY()*scale);
 			}
+			
 		});
 	}
 	
