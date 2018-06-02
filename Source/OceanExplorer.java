@@ -117,18 +117,19 @@ public class OceanExplorer extends Application{
 		monster4 = new Monster();
 		
 		container1 = new Container(3);
-		container1.place(new Point2D(randIsland.nextInt(dimensions - 10), randIsland.nextInt(dimensions - 10)));
-		root.getChildren().add(container1.getRectangle());
-		
 		container2 = new Container(5);
-		container2.place(new Point2D(randIsland.nextInt(dimensions - 5), randIsland.nextInt(dimensions - 5)));
-		root.getChildren().add(container2.getRectangle());
 
 		container1.addChild(monster1);
 		container1.addChild(monster2);
 		
 		container2.addChild(monster3);
 		container2.addChild(monster4);
+		
+		container1.place(new Point2D(randIsland.nextInt(dimensions - 10), randIsland.nextInt(dimensions - 10)));
+		root.getChildren().add(container1.getRectangle());
+		
+		container2.place(new Point2D(randIsland.nextInt(dimensions - 5), randIsland.nextInt(dimensions - 5)));
+		root.getChildren().add(container2.getRectangle());
 		
 		loadMonsterImages();
 		
