@@ -10,7 +10,6 @@ import javafx.geometry.Point2D;
 //Monster class that moves inside its containing class
 public class Monster implements Component {
 	OceanMap oceanMap = OceanMap.getInstance();
-	Monster monster;
 	Point2D currentLocation;
 	boolean atRightEdge = false;
 	boolean atLeftEdge = true;
@@ -22,11 +21,6 @@ public class Monster implements Component {
 	
 	//empty constructor, as its properties are set later
 	public Monster() {
-	}
-	
-	//returns a Monster object 
-	public Monster getMonster() {
-		return monster;
 	}
 	
 	//returns the Container object that this Monster is a part of
@@ -60,22 +54,22 @@ public class Monster implements Component {
 		
 		res = rand.nextInt(4);
 		switch(res){
-		case 0:
-			if (getContainer().ContainsPoint(tempPointEast) && oceanMap.isOcean((int)tempPointEast.getX(), (int)tempPointEast.getY())) {
-				currentLocation = new Point2D(currentLocation.getX() +1, currentLocation.getY());
-			}break;
-		case 1:
-			if (getContainer().ContainsPoint(tempPointWest) && oceanMap.isOcean((int)tempPointWest.getX(), (int)tempPointWest.getY())) {
-				currentLocation = new Point2D(currentLocation.getX()-1, currentLocation.getY());
-			}break;
-		case 2:
-			if (getContainer().ContainsPoint(tempPointNorth) && oceanMap.isOcean((int)tempPointNorth.getX(), (int)tempPointNorth.getY())) {
-				currentLocation = new Point2D(currentLocation.getX(), currentLocation.getY()+1);
-			}break;
-		case 3:
-			if (getContainer().ContainsPoint(tempPointSouth) && oceanMap.isOcean((int)tempPointSouth.getX(), (int)tempPointSouth.getY())) {
-				currentLocation = new Point2D(currentLocation.getX(), currentLocation.getY()-1);
-			}break;
+			case 0:
+				if (getContainer().ContainsPoint(tempPointEast) && oceanMap.isOcean((int)tempPointEast.getX(), (int)tempPointEast.getY())) {
+					currentLocation = new Point2D(currentLocation.getX() +1, currentLocation.getY());
+				} break;
+			case 1:
+				if (getContainer().ContainsPoint(tempPointWest) && oceanMap.isOcean((int)tempPointWest.getX(), (int)tempPointWest.getY())) {
+					currentLocation = new Point2D(currentLocation.getX()-1, currentLocation.getY());
+				} break;
+			case 2:
+				if (getContainer().ContainsPoint(tempPointNorth) && oceanMap.isOcean((int)tempPointNorth.getX(), (int)tempPointNorth.getY())) {
+					currentLocation = new Point2D(currentLocation.getX(), currentLocation.getY()+1);
+				} break;
+			case 3:
+				if (getContainer().ContainsPoint(tempPointSouth) && oceanMap.isOcean((int)tempPointSouth.getX(), (int)tempPointSouth.getY())) {
+					currentLocation = new Point2D(currentLocation.getX(), currentLocation.getY()-1);
+				} break;
 		}
 	}
 	 
