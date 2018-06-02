@@ -3,8 +3,8 @@
  * SE350
  */
  
- public class Container {
- 
- 
+ public interface Container {
+	 public void move();
+	 
  
  }
