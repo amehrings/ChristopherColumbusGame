@@ -18,7 +18,6 @@ public class Container implements Component{
 	Point2D topLeft;
 	Point2D randPoint;
 	
-	Random rand = new Random();
 	ArrayList<Component> components = new ArrayList<Component>();
 	
 	//Container constructor
@@ -39,7 +38,8 @@ public class Container implements Component{
 	 //adds child to component array
 	public void addChild(Component comp) {
 		components.add(comp);
-		randPoint = new Point2D(rand.nextInt(width), rand.nextInt(width));
+		Random rand = new Random();
+		randPoint = new Point2D((int)topLeft.getX() + rand.nextInt(width), (int)topLeft.getY() + rand.nextInt((width)));
 		comp.setContainer(this);
 		comp.place(randPoint);
 	}
@@ -47,6 +47,10 @@ public class Container implements Component{
 	//removes child from component array
 	public void removeChild(Component comp) {
 		components.remove(comp);
+	}
+	
+	public Rectangle getRectangle() {
+		return rect;
 	}
 	
 	@Override
@@ -59,6 +63,7 @@ public class Container implements Component{
 		topLeft = point2d;
 		rect.setX(topLeft.getX());
 		rect.setY(topLeft.getY());
+		System.out.print(point2d);
 	}
 
 	@Override
