@@ -11,6 +11,7 @@ import javafx.geometry.Point2D;
 
 public class MonsterTest {
 
+	//asserts Equals if the getContainer returns the correct Container it is put in
 	@Test
 	public void testGetContainer() {
 		Container container = new Container(3);
@@ -20,6 +21,7 @@ public class MonsterTest {
 		assertEquals(monster.getContainer(), container);
 	}
 
+	//asserts true if the getMonsterLocation returns a location inside the container
 	@Test
 	public void testGetMonsterLocation() {
 		Container container = new Container(3);
@@ -29,6 +31,7 @@ public class MonsterTest {
 		assertTrue(container.ContainsPoint(monster.getMonsterLocation()));
 	}
 	
+	//asserts true if the monster moves inside the container
 	@Test
 	public void testMove() {
 		Container container = new Container(3);
