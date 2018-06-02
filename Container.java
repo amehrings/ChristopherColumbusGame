@@ -18,19 +18,16 @@ public class Container implements Component{
 	ArrayList<Component> components = new ArrayList<Component>();
 	
 	//Container constructor
-	public Container(Point2D topLeft, int w, int h) {
-		this.topLeft = topLeft;
+	public Container(int w, int h) {
 		height = h;
 		width = w;
 		rect.setHeight(height);
 		rect.setWidth(width);
-		rect.setX(topLeft.getX());
-		rect.setY(topLeft.getY());
 		rect.setStroke(Color.TRANSPARENT);
 		rect.setFill(Color.TRANSPARENT);
 	}
 	 
-	////returns true if Container object contains the point given
+	//returns true if Container object contains the point given
 	public boolean ContainsPoint(Point2D point) {
 		return rect.contains(point);
 	}
@@ -38,6 +35,8 @@ public class Container implements Component{
 	 //adds child to component array
 	public void addChild(Component comp) {
 		components.add(comp);
+		comp.setContainer(this);
+		comp.place(topLeft);
 	}
 	
 	//removes child from component array
@@ -48,6 +47,18 @@ public class Container implements Component{
 	@Override
 	public void move() {
 		//empty for the containing class
+	}
+
+	@Override
+	public void place(Point2D point2d) {
+		topLeft = point2d;
+		rect.setX(topLeft.getX());
+		rect.setY(topLeft.getY());
+	}
+
+	@Override
+	public void setContainer(Container container) {
+		// Not needed for the container itself
 		
 	}
 	 

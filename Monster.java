@@ -6,10 +6,11 @@
 import javafx.geometry.Point2D;
  
 public class Monster implements Component {
-	 
+	OceanMap oceanMap = OceanMap.getInstance();
 	Monster monster;
 	Point2D currentLocation;
 	boolean direction = true;
+	Container currentContainer;
 		
 	public Monster() {
 	}
@@ -19,7 +20,16 @@ public class Monster implements Component {
 	}
 	
 	public Container getContainer() {
-		return null;
+		return currentContainer;
+	}
+	
+	@Override
+	public void setContainer(Container container) {
+		currentContainer = container;
+	}
+	
+	public Point2D getMonsterLocation() {
+		return currentLocation;
 	}
 	
 	public boolean containsPoint(Point2D point) {
@@ -32,7 +42,7 @@ public class Monster implements Component {
 	
 	public void move(){
 		Point2D tempPoint = new Point2D(currentLocation.getX() + 1, currentLocation.getY());
-		if (getContainer().ContainsPoint(tempPoint)) {
+		if (getContainer().ContainsPoint(tempPoint) && oceanMap.isOcean((int)tempPoint.getX(), (int)tempPoint.getY())) {
 			currentLocation = new Point2D(currentLocation.getX() +1, currentLocation.getY());
 		}
 	}

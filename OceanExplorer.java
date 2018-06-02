@@ -6,7 +6,6 @@
 
 import javafx.stage.Stage;
 
-import java.util.Observer;
 import java.util.Random;
 
 import javafx.application.Application;
@@ -19,6 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.geometry.Point2D;
 
 public class OceanExplorer extends Application{
 	Random randIsland = new Random();
@@ -39,12 +39,25 @@ public class OceanExplorer extends Application{
 	ImageView pirateHorzImageView;
 	ImageView islandImageView;
 	ImageView treasureImageView;
+	ImageView monsterOneImageView;
+	ImageView monsterTwoImageView;
+	ImageView monsterThreeImageView;
+	ImageView monsterFourImageView;
 	
 	ChristopherColumbus ChristopherColumbus;
 	RegularPirateFactory regPirateFactory = new RegularPirateFactory();
 	DutchmanFactory dutchFactory = new DutchmanFactory();
 	PirateShip pirate1;
 	PirateShip pirate2;
+	
+	Monster monster1;
+	Monster monster2;
+	Monster monster3;
+	Monster monster4;
+	
+	Container container1;
+	Container container2;
+	
 	static PirateShip pirateHorz;
 	static PirateShip pirateVert;
 	
@@ -74,6 +87,17 @@ public class OceanExplorer extends Application{
 		
 		ChristopherColumbus.addObserver(pirate1);
 		ChristopherColumbus.addObserver(pirate2);
+		
+		container1 = new Container(3, 3);
+		container1.place(new Point2D(0, 0));
+		
+		monster1 = new Monster();
+		monster2 = new Monster();
+		container1.addChild(monster1);
+		container1.addChild(monster2);
+		
+		loadMonsterImages();
+		
 		scene = new Scene(root, dimensions*scale, dimensions*scale);
 		oceanStage.setScene(scene);
 		oceanStage.setTitle("Ocean");
@@ -155,6 +179,16 @@ public class OceanExplorer extends Application{
 		
 	}
 	
+	public void loadMonsterImages() {
+		Image monsterImage = new Image("images\\kraken.png", 50, 50, true, true);
+		
+		monsterOneImageView = new ImageView(monsterImage);
+		
+		monsterOneImageView.setX(monster1.getMonsterLocation().getX()*scale);
+		monsterOneImageView.setY(monster1.getMonsterLocation().getY()*scale);
+		root.getChildren().add(monsterOneImageView);
+	}
+	
 	//allows the user to move Christopher Columbus, no return value
 	private void startSailing() {
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -197,6 +231,7 @@ public class OceanExplorer extends Application{
 				
 				pirateVert.move();
 				pirateHorz.move();
+				monster1.move();
 				
 				ChristopherColumbusImageView.setX(oceanMap.getChristopherColumbusLocation().x*scale);
 				ChristopherColumbusImageView.setY(oceanMap.getChristopherColumbusLocation().y*scale);
@@ -212,6 +247,9 @@ public class OceanExplorer extends Application{
 				
 				pirateHorzImageView.setX(pirateHorz.getPirateShipLocation().x*scale);
 				pirateHorzImageView.setY(pirateHorz.getPirateShipLocation().y*scale);
+				
+				monsterOneImageView.setX(monster1.getMonsterLocation().getX()*scale);
+				monsterOneImageView.setY(monster1.getMonsterLocation().getY()*scale);
 			}
 		});
 	}
