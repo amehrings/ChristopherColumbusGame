@@ -88,13 +88,21 @@ public class OceanExplorer extends Application{
 		ChristopherColumbus.addObserver(pirate1);
 		ChristopherColumbus.addObserver(pirate2);
 		
-		container1 = new Container(3, 3);
-		container1.place(new Point2D(0, 0));
+		container1 = new Container(3);
+		container1.place(new Point2D(randIsland.nextInt(dimensions - 3), randIsland.nextInt(dimensions - 3)));
+		container2 = new Container(5);
+		container2.place(new Point2D(randIsland.nextInt(dimensions - 5), randIsland.nextInt(dimensions - 5)));
 		
 		monster1 = new Monster();
-		monster2 = new Monster();
+		//monster2 = new Monster();
+		monster3 = new Monster();
+		//monster4 = new Monster();
+		
 		container1.addChild(monster1);
-		container1.addChild(monster2);
+		//container1.addChild(monster2);
+		
+		container2.addChild(monster3);
+		//container2.addChild(monster4);
 		
 		loadMonsterImages();
 		
@@ -183,10 +191,25 @@ public class OceanExplorer extends Application{
 		Image monsterImage = new Image("images\\kraken.png", 50, 50, true, true);
 		
 		monsterOneImageView = new ImageView(monsterImage);
+		monsterTwoImageView = new ImageView(monsterImage);
+		monsterThreeImageView = new ImageView(monsterImage);
+		monsterFourImageView = new ImageView(monsterImage);
 		
 		monsterOneImageView.setX(monster1.getMonsterLocation().getX()*scale);
 		monsterOneImageView.setY(monster1.getMonsterLocation().getY()*scale);
 		root.getChildren().add(monsterOneImageView);
+		/*
+		monsterTwoImageView.setX(monster2.getMonsterLocation().getX()*scale);
+		monsterTwoImageView.setY(monster2.getMonsterLocation().getY()*scale);
+		root.getChildren().add(monsterTwoImageView); */
+		
+		monsterThreeImageView.setX(monster3.getMonsterLocation().getX()*scale);
+		monsterThreeImageView.setY(monster3.getMonsterLocation().getY()*scale);
+		root.getChildren().add(monsterThreeImageView);
+		/*
+		monsterFourImageView.setX(monster4.getMonsterLocation().getX()*scale);
+		monsterFourImageView.setY(monster4.getMonsterLocation().getY()*scale);
+		root.getChildren().add(monsterFourImageView); */
 	}
 	
 	//allows the user to move Christopher Columbus, no return value
@@ -232,6 +255,9 @@ public class OceanExplorer extends Application{
 				pirateVert.move();
 				pirateHorz.move();
 				monster1.move();
+				//monster2.move();
+				monster3.move();
+				//monster4.move();
 				
 				ChristopherColumbusImageView.setX(oceanMap.getChristopherColumbusLocation().x*scale);
 				ChristopherColumbusImageView.setY(oceanMap.getChristopherColumbusLocation().y*scale);

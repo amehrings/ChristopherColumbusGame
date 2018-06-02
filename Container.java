@@ -4,6 +4,7 @@
  */
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
@@ -15,11 +16,14 @@ public class Container implements Component{
 	int height;
 	int width;
 	Point2D topLeft;
+	Point2D randPoint;
+	
+	Random rand = new Random();
 	ArrayList<Component> components = new ArrayList<Component>();
 	
 	//Container constructor
-	public Container(int w, int h) {
-		height = h;
+	public Container(int w) {
+		height = w;
 		width = w;
 		rect.setHeight(height);
 		rect.setWidth(width);
@@ -35,8 +39,9 @@ public class Container implements Component{
 	 //adds child to component array
 	public void addChild(Component comp) {
 		components.add(comp);
+		randPoint = new Point2D(rand.nextInt(width), rand.nextInt(width));
 		comp.setContainer(this);
-		comp.place(topLeft);
+		comp.place(randPoint);
 	}
 	
 	//removes child from component array
