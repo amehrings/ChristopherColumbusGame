@@ -6,7 +6,10 @@
 
 import javafx.stage.Stage;
 
+import java.util.Date;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -26,6 +29,7 @@ public class OceanExplorer extends Application{
 	final int dimensions = 20; 
 	final int scale = 50;
 	final int islandCount = randIslands;
+	Timer timer = new Timer();
 	
 	OceanMap oceanMap; 
 	boolean[][] islandMap;
@@ -43,6 +47,8 @@ public class OceanExplorer extends Application{
 	ImageView monsterTwoImageView;
 	ImageView monsterThreeImageView;
 	ImageView monsterFourImageView;
+	ImageView winImageView;
+	ImageView loseImageView;
 	
 	ChristopherColumbus ChristopherColumbus;
 	RegularPirateFactory regPirateFactory = new RegularPirateFactory();
@@ -58,8 +64,8 @@ public class OceanExplorer extends Application{
 	Container container1;
 	Container container2;
 	
-	static PirateShip pirateHorz;
-	static PirateShip pirateVert;
+	PirateShip pirateHorz;
+	PirateShip pirateVert;
 	
 	@Override
 	public void start(Stage oceanStage) throws Exception {
@@ -213,26 +219,60 @@ public class OceanExplorer extends Application{
 		root.getChildren().add(monsterFourImageView); 
 	}
 	
+	public void loadLoseImage(){
+		Image gameOver = new Image("images\\lose.png", 750,750, true, true);
+		loseImageView = new ImageView(gameOver);
+		loseImageView.setX(scene.getWidth()/8);
+		loseImageView.setY(scene.getWidth()/4);
+		root.getChildren().add(loseImageView); 
+	}
+	
+	public void loadWinImage(){
+		Image win = new Image("images\\win.png", 750,750, true, true);
+		winImageView = new ImageView(win);
+		winImageView.setX(scene.getWidth()/8);
+		winImageView.setY(scene.getHeight()/4);
+		root.getChildren().add(winImageView); 
+		
+		
+	}
+	
+	
+	TimerTask exitApp = new TimerTask() {
+	public void run() {
+	    System.exit(0);
+	    }
+	};
+
+	public void exitTimer() {
+		timer.schedule(exitApp, new Date(System.currentTimeMillis()+3*1000));
+	}
+	
 	//allows the user to move Christopher Columbus, no return value
 	private void startSailing() {
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-			
-			@Override
 			public void handle(KeyEvent ke) {
 				if(pirate1.getPirateShipLocation().x == oceanMap.getChristopherColumbusLocation().x && pirate1.getPirateShipLocation().y == oceanMap.getChristopherColumbusLocation().y 
 				|| pirate2.getPirateShipLocation().x == oceanMap.getChristopherColumbusLocation().x && pirate2.getPirateShipLocation().y == oceanMap.getChristopherColumbusLocation().y 
 				|| pirateVert.getPirateShipLocation().x == oceanMap.getChristopherColumbusLocation().x && pirateVert.getPirateShipLocation().y == oceanMap.getChristopherColumbusLocation().y 
-				|| pirateHorz.getPirateShipLocation().x == oceanMap.getChristopherColumbusLocation().x && pirateHorz.getPirateShipLocation().y == oceanMap.getChristopherColumbusLocation().y)
+				|| pirateHorz.getPirateShipLocation().x == oceanMap.getChristopherColumbusLocation().x && pirateHorz.getPirateShipLocation().y == oceanMap.getChristopherColumbusLocation().y
+				|| (int)monster1.getMonsterLocation().getX() == oceanMap.getChristopherColumbusLocation().x && (int)monster1.getMonsterLocation().getY() == oceanMap.getChristopherColumbusLocation().y
+				|| (int)monster2.getMonsterLocation().getX() == oceanMap.getChristopherColumbusLocation().x && (int)monster2.getMonsterLocation().getY() == oceanMap.getChristopherColumbusLocation().y
+				|| (int)monster3.getMonsterLocation().getX() == oceanMap.getChristopherColumbusLocation().x && (int)monster3.getMonsterLocation().getY() == oceanMap.getChristopherColumbusLocation().y
+				|| (int)monster4.getMonsterLocation().getX() == oceanMap.getChristopherColumbusLocation().x && (int)monster4.getMonsterLocation().getY() == oceanMap.getChristopherColumbusLocation().y
+				)
 						{			
 							System.out.println("GAME OVER");
-							System.exit(0);
+							loadLoseImage();
+							exitTimer();
 						}
 				
 				if((oceanMap.getChristopherColumbusLocation().x ==oceanMap.getTreasureLocation().x 
 					&& oceanMap.getChristopherColumbusLocation().y == oceanMap.getTreasureLocation().y))
 					{
-						System.out.println(" YOU WIN ");
-						System.exit(0);
+						System.out.println("YOU WIN");
+						loadWinImage();
+						exitTimer();
 					}
 				
 				switch(ke.getCode()) {

@@ -30,7 +30,7 @@ public class OceanMap {
 	public static OceanMap getInstance() {
 		if (uniqueInstance == null) {
 			Random randIsland = new Random();
-			int randIslands = randIsland.nextInt(20);
+			int randIslands = (randIsland.nextInt((20-10) + 1) + 10);
 			uniqueInstance = new OceanMap(20, randIslands);
 		}
 		return uniqueInstance;
