@@ -1,10 +1,9 @@
-import java.awt.Point;
-import java.util.Random;
-
 /* Austin Paul and Aaron Mehrings
  * Final Project
  * SE350
  */
+
+import java.util.Random;
 
 public class Dutchman extends PirateShip {
 	int speed;
