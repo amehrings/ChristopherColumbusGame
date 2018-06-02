@@ -222,7 +222,11 @@ public class OceanExplorer extends Application{
 				if(pirate1.getPirateShipLocation().x == oceanMap.getChristopherColumbusLocation().x && pirate1.getPirateShipLocation().y == oceanMap.getChristopherColumbusLocation().y 
 				|| pirate2.getPirateShipLocation().x == oceanMap.getChristopherColumbusLocation().x && pirate2.getPirateShipLocation().y == oceanMap.getChristopherColumbusLocation().y 
 				|| pirateVert.getPirateShipLocation().x == oceanMap.getChristopherColumbusLocation().x && pirateVert.getPirateShipLocation().y == oceanMap.getChristopherColumbusLocation().y 
-				|| pirateHorz.getPirateShipLocation().x == oceanMap.getChristopherColumbusLocation().x && pirateHorz.getPirateShipLocation().y == oceanMap.getChristopherColumbusLocation().y)
+				|| pirateHorz.getPirateShipLocation().x == oceanMap.getChristopherColumbusLocation().x && pirateHorz.getPirateShipLocation().y == oceanMap.getChristopherColumbusLocation().y
+				|| monster1.getMonsterLocation().getX() == oceanMap.getChristopherColumbusLocation().x && monster1.getMonsterLocation().getY() == oceanMap.getChristopherColumbusLocation().y
+				|| monster2.getMonsterLocation().getX() == oceanMap.getChristopherColumbusLocation().x && monster2.getMonsterLocation().getY() == oceanMap.getChristopherColumbusLocation().y
+				|| monster3.getMonsterLocation().getX() == oceanMap.getChristopherColumbusLocation().x && monster3.getMonsterLocation().getY() == oceanMap.getChristopherColumbusLocation().y
+				|| monster4.getMonsterLocation().getX() == oceanMap.getChristopherColumbusLocation().x && monster4.getMonsterLocation().getY() == oceanMap.getChristopherColumbusLocation().y)
 						{			
 							System.out.println("GAME OVER");
 							System.exit(0);
