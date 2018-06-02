@@ -6,6 +6,8 @@
 
 import javafx.stage.Stage;
 
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 import java.util.Timer;
@@ -32,7 +34,9 @@ public class OceanExplorer extends Application{
 	final int scale = 50;
 	final int islandCount = randIslands;
 	Timer timer = new Timer();
-	
+	List<PirateShip> pirateList = new ArrayList<PirateShip>();
+	List<Monster> monsterList = new ArrayList<Monster>();
+
 	OceanMap oceanMap; 
 	boolean[][] islandMap;
 	Scene scene;
@@ -98,10 +102,14 @@ public class OceanExplorer extends Application{
 		//dutchmen factory, adding observers to ship, pirate ship moving strategy pattern
 		pirate1 = dutchFactory.createPirateShip("Slow");
 		pirate2 = dutchFactory.createPirateShip("Fast");
-		
 		pirateVert = regPirateFactory.createPirateShip("Vertical");
 		pirateHorz = regPirateFactory.createPirateShip("Horizontal");
 
+		pirateList.add(pirate1);
+		pirateList.add(pirate2);
+		pirateList.add(pirateVert);
+		pirateList.add(pirateHorz);
+		
 		pirateVert.setStrategy(new VerticalMoveStrategy());
 		pirateHorz.setStrategy(new HorizontalMoveStrategy());
 		loadPirateImages();
@@ -115,6 +123,12 @@ public class OceanExplorer extends Application{
 		monster2 = new Monster();
 		monster3 = new Monster();
 		monster4 = new Monster();
+		
+		monsterList.add(monster1);
+		monsterList.add(monster2);
+		monsterList.add(monster3);
+		monsterList.add(monster4);
+
 		
 		container1 = new Container(3);
 		container2 = new Container(5);
@@ -291,20 +305,22 @@ public class OceanExplorer extends Application{
 	private void startSailing() {
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			public void handle(KeyEvent ke) {
-				if(pirate1.getPirateShipLocation().x == oceanMap.getChristopherColumbusLocation().x && pirate1.getPirateShipLocation().y == oceanMap.getChristopherColumbusLocation().y 
-				|| pirate2.getPirateShipLocation().x == oceanMap.getChristopherColumbusLocation().x && pirate2.getPirateShipLocation().y == oceanMap.getChristopherColumbusLocation().y 
-				|| pirateVert.getPirateShipLocation().x == oceanMap.getChristopherColumbusLocation().x && pirateVert.getPirateShipLocation().y == oceanMap.getChristopherColumbusLocation().y 
-				|| pirateHorz.getPirateShipLocation().x == oceanMap.getChristopherColumbusLocation().x && pirateHorz.getPirateShipLocation().y == oceanMap.getChristopherColumbusLocation().y
-				|| monster1.getMonsterLocation().getX() == oceanMap.getChristopherColumbusLocation().x && monster1.getMonsterLocation().getY() == oceanMap.getChristopherColumbusLocation().y
-				|| monster2.getMonsterLocation().getX() == oceanMap.getChristopherColumbusLocation().x && monster2.getMonsterLocation().getY() == oceanMap.getChristopherColumbusLocation().y
-				|| monster3.getMonsterLocation().getX() == oceanMap.getChristopherColumbusLocation().x && monster3.getMonsterLocation().getY() == oceanMap.getChristopherColumbusLocation().y
-				|| monster4.getMonsterLocation().getX() == oceanMap.getChristopherColumbusLocation().x && monster4.getMonsterLocation().getY() == oceanMap.getChristopherColumbusLocation().y)
-					{			
+				for(PirateShip pirate: pirateList){
+					if(pirate.getPirateShipLocation().x == oceanMap.getChristopherColumbusLocation().x && pirate.getPirateShipLocation().y == oceanMap.getChristopherColumbusLocation().y){
 						System.out.println("GAME OVER");
 						loadLoseImage();
 						exitTimer();
 					}
+				}
 				
+				for(Monster monster: monsterList){
+					if(monster.getMonsterLocation().getX() == oceanMap.getChristopherColumbusLocation().x && monster.getMonsterLocation().getY() == oceanMap.getChristopherColumbusLocation().y){
+						System.out.println("GAME OVER");
+						loadLoseImage();
+						exitTimer();
+					}
+				}
+
 				if((oceanMap.getChristopherColumbusLocation().x ==oceanMap.getTreasureLocation().x 
 					&& oceanMap.getChristopherColumbusLocation().y == oceanMap.getTreasureLocation().y))
 					{
