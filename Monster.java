@@ -3,6 +3,8 @@
  * SE350
  */
 
+import java.util.Random;
+
 import javafx.geometry.Point2D;
  
 public class Monster implements Component {
@@ -14,7 +16,9 @@ public class Monster implements Component {
 	boolean atTopEdge = true;
 	boolean atBottomEdge = true;
 	Container currentContainer;
-		
+	Random rand = new Random();
+	int res;
+	
 	public Monster() {
 	}
 	
@@ -43,58 +47,31 @@ public class Monster implements Component {
 		currentLocation = point; 
 	}
 	
+	//randomly move within bounds of container
 	public void move(){
-		
-		//move East
 		Point2D tempPointEast = new Point2D(currentLocation.getX() + 1, currentLocation.getY());
-		if(!atLeftEdge){
+		Point2D tempPointWest = new Point2D(currentLocation.getX()-1, currentLocation.getY());
+		Point2D tempPointNorth = new Point2D(currentLocation.getX(), currentLocation.getY()+1);
+		Point2D tempPointSouth = new Point2D(currentLocation.getX(), currentLocation.getY()-1);
+		
+		res = rand.nextInt(4);
+		switch(res){
+		case 0:
 			if (getContainer().ContainsPoint(tempPointEast) && oceanMap.isOcean((int)tempPointEast.getX(), (int)tempPointEast.getY())) {
 				currentLocation = new Point2D(currentLocation.getX() +1, currentLocation.getY());
-			}
-			
-			else if(!(getContainer().ContainsPoint(tempPointEast) && oceanMap.isOcean((int)tempPointEast.getX(), (int)tempPointEast.getY()))){
-				atLeftEdge = true;
-				atBottomEdge = false;
-			}
-		}
-		
-		//move West
-		Point2D tempPointWest = new Point2D(currentLocation.getX()-1, currentLocation.getY());
-		if(!atRightEdge){
+			}break;
+		case 1:
 			if (getContainer().ContainsPoint(tempPointWest) && oceanMap.isOcean((int)tempPointWest.getX(), (int)tempPointWest.getY())) {
 				currentLocation = new Point2D(currentLocation.getX()-1, currentLocation.getY());
-			}
-			
-			else if(!(getContainer().ContainsPoint(tempPointWest) && oceanMap.isOcean((int)tempPointWest.getX(), (int)tempPointWest.getY()))){
-				atRightEdge = true;
-				atTopEdge = false;
-			}
-		}
-		
-		//move North
-		Point2D tempPointNorth = new Point2D(currentLocation.getX(), currentLocation.getY()+1);
-		if(!atBottomEdge){
+			}break;
+		case 2:
 			if (getContainer().ContainsPoint(tempPointNorth) && oceanMap.isOcean((int)tempPointNorth.getX(), (int)tempPointNorth.getY())) {
 				currentLocation = new Point2D(currentLocation.getX(), currentLocation.getY()+1);
-			}
-			
-			else if(!(getContainer().ContainsPoint(tempPointNorth) && oceanMap.isOcean((int)tempPointNorth.getX(), (int)tempPointNorth.getY()))){
-				atBottomEdge = true;
-				atRightEdge = false;
-			}
-		}
-		
-		//move South
-		Point2D tempPointSouth = new Point2D(currentLocation.getX(), currentLocation.getY()-1);
-		if(!atTopEdge){
+			}break;
+		case 3:
 			if (getContainer().ContainsPoint(tempPointSouth) && oceanMap.isOcean((int)tempPointSouth.getX(), (int)tempPointSouth.getY())) {
 				currentLocation = new Point2D(currentLocation.getX(), currentLocation.getY()-1);
-			}
-			
-			else if(!(getContainer().ContainsPoint(tempPointSouth) && oceanMap.isOcean((int)tempPointSouth.getX(), (int)tempPointSouth.getY()))){
-				atTopEdge = true;
-				atLeftEdge = false;
-			}
+			}break;
 		}
 	}
 	 
