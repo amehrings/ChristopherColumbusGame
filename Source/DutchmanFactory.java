@@ -3,7 +3,7 @@
  * SE350
  */
 
-//Dutchman factory that creates Dutchman Pirates
+//Concrete Dutchman factory that creates Dutchman Pirates
 
 public class DutchmanFactory extends PirateFactory {
 	
