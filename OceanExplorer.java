@@ -88,7 +88,7 @@ public class OceanExplorer extends Application{
 		ChristopherColumbus.addObserver(pirate1);
 		ChristopherColumbus.addObserver(pirate2);
 
-		container1 = new Container(10);
+		container1 = new Container(3);
 		root.getChildren().add(container1.getRectangle());
 		container1.place(new Point2D(randIsland.nextInt(dimensions - 10), randIsland.nextInt(dimensions - 10)));
 		container2 = new Container(5);
