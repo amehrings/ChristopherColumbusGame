@@ -3,10 +3,10 @@
  * SE350
  */
 
-
 import java.awt.Point;
 import java.util.Random;
 
+//Map of playable ocean which is class consisting of islands, treasure, size, implements singleton pattern
 public class OceanMap {
 	private static OceanMap uniqueInstance;
 	boolean[][]islands;
@@ -27,6 +27,7 @@ public class OceanMap {
 		treasureLocation = placeTreasure();
 	}
 	
+	//used for singleton pattern to return instance of OceanMap
 	public static OceanMap getInstance() {
 		if (uniqueInstance == null) {
 			Random randIsland = new Random();
@@ -92,6 +93,7 @@ public class OceanMap {
 		return new Point(x, y);
 	}
 	
+	//returns Point of treasure location
 	public Point getTreasureLocation() {
 		return treasureLocation;
 	}

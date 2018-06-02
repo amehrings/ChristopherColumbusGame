@@ -3,10 +3,12 @@
  * SE350
  */
 
+//Vertical move strategy that utilizes the Strategy Pattern
 public class VerticalMoveStrategy implements Strategy {
 	OceanMap oceanMap = OceanMap.getInstance();
 	boolean direction = true;
 	
+	//Moves the pirate vertically across the screen
 	@Override
 	public void move(PirateShip pirate) {
 		if (pirate.currentLocation.y + 1 < oceanMap.getDimensions() && direction == true) {
@@ -28,6 +30,7 @@ public class VerticalMoveStrategy implements Strategy {
 		}
 	}
 
+	//returns string value of movement type
 	@Override
 	public String getStrategy() {
 		return "Vertical";

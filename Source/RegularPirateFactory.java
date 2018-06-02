@@ -3,11 +3,12 @@
  * SE350
  */
 
+//concrete class for pirate factory pattern
 public class RegularPirateFactory extends PirateFactory {
 	
 	OceanMap oceanMap = OceanMap.getInstance();
 
-	
+	//create either vertical or horizontal pirate ship, returns pirate ship
 	@Override
 	public PirateShip createPirateShip(String type) {
 		if (type.equals("Vertical")){

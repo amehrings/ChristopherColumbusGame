@@ -57,12 +57,13 @@ public class PirateShip implements Observer  {
 		strat.move(this);
 	}
 
-	
+	//get current Strategy, returns string
 	public String getStrategy() {
 		return strat.getStrategy();
 		
 	}
 	
+	//set strategy, no return value
 	public void setStrategy(Strategy strat) {
 		this.strat = strat;
 	}
