@@ -158,6 +158,7 @@ public class OceanExplorer extends Application{
 	//allows the user to move Christopher Columbus, no return value
 	private void startSailing() {
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+			
 			@Override
 			public void handle(KeyEvent ke) {
 				if(pirate1.getPirateShipLocation().x == oceanMap.getChristopherColumbusLocation().x && pirate1.getPirateShipLocation().y == oceanMap.getChristopherColumbusLocation().y 
