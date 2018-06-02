@@ -17,6 +17,8 @@ public class Container implements Component{
 	int width;
 	Point2D topLeft;
 	Point2D randPoint;
+	OceanMap oceanMap = OceanMap.getInstance();
+
 	
 	ArrayList<Component> components = new ArrayList<Component>();
 	
@@ -63,7 +65,6 @@ public class Container implements Component{
 		topLeft = point2d;
 		rect.setX(topLeft.getX());
 		rect.setY(topLeft.getY());
-		System.out.print(point2d);
 	}
 
 	@Override
