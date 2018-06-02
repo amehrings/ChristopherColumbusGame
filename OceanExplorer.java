@@ -96,7 +96,7 @@ public class OceanExplorer extends Application{
 
 		container1 = new Container(3);
 		root.getChildren().add(container1.getRectangle());
-		container1.place(new Point2D(randIsland.nextInt(dimensions - 3), randIsland.nextInt(dimensions - 3)));
+		container1.place(new Point2D(randIsland.nextInt(dimensions - 10), randIsland.nextInt(dimensions - 10)));
 		container2 = new Container(5);
 		container2.place(new Point2D(randIsland.nextInt(dimensions - 5), randIsland.nextInt(dimensions - 5)));
 		
@@ -256,11 +256,11 @@ public class OceanExplorer extends Application{
 				|| pirate2.getPirateShipLocation().x == oceanMap.getChristopherColumbusLocation().x && pirate2.getPirateShipLocation().y == oceanMap.getChristopherColumbusLocation().y 
 				|| pirateVert.getPirateShipLocation().x == oceanMap.getChristopherColumbusLocation().x && pirateVert.getPirateShipLocation().y == oceanMap.getChristopherColumbusLocation().y 
 				|| pirateHorz.getPirateShipLocation().x == oceanMap.getChristopherColumbusLocation().x && pirateHorz.getPirateShipLocation().y == oceanMap.getChristopherColumbusLocation().y
-				|| (int)monster1.getMonsterLocation().getX() == oceanMap.getChristopherColumbusLocation().x && (int)monster1.getMonsterLocation().getY() == oceanMap.getChristopherColumbusLocation().y
-				|| (int)monster2.getMonsterLocation().getX() == oceanMap.getChristopherColumbusLocation().x && (int)monster2.getMonsterLocation().getY() == oceanMap.getChristopherColumbusLocation().y
-				|| (int)monster3.getMonsterLocation().getX() == oceanMap.getChristopherColumbusLocation().x && (int)monster3.getMonsterLocation().getY() == oceanMap.getChristopherColumbusLocation().y
-				|| (int)monster4.getMonsterLocation().getX() == oceanMap.getChristopherColumbusLocation().x && (int)monster4.getMonsterLocation().getY() == oceanMap.getChristopherColumbusLocation().y
-				)
+				|| monster1.getMonsterLocation().getX() == oceanMap.getChristopherColumbusLocation().x && monster1.getMonsterLocation().getY() == oceanMap.getChristopherColumbusLocation().y
+				|| monster2.getMonsterLocation().getX() == oceanMap.getChristopherColumbusLocation().x && monster2.getMonsterLocation().getY() == oceanMap.getChristopherColumbusLocation().y
+				|| monster3.getMonsterLocation().getX() == oceanMap.getChristopherColumbusLocation().x && monster3.getMonsterLocation().getY() == oceanMap.getChristopherColumbusLocation().y
+				|| monster4.getMonsterLocation().getX() == oceanMap.getChristopherColumbusLocation().x && monster4.getMonsterLocation().getY() == oceanMap.getChristopherColumbusLocation().y)
+
 						{			
 							System.out.println("GAME OVER");
 							loadLoseImage();
